@@ -1,0 +1,42 @@
+<!--pages/cartoon/detail.wxml-->
+<view>
+  <!-- 封面 -->
+  <view class='detail_top'>
+    <image src="{{item.cover}}" mode="aspectFit"></image>
+    <view class='detail_cover'>
+        <text class='detail_name'>{{item.title}}</text>
+        <text class='detail_update' decode='true'>{{item.author}}[著]&nbsp;&nbsp;&nbsp;{{item.status_display}}&nbsp;&nbsp;&nbsp;更新至{{item.total_chapter}}话</text>
+        <text class='last_readed'>上次阅读至{{last_read.chapter}}话</text>
+    </view>
+  </view>
+  <!-- 简介 -->
+  <view>
+    <view class='page_title'>
+      <image src='/images/tab.png' class='iconImg'></image>
+      <text>简介</text>
+    </view>
+    <view class='detail_description'>
+      <text>{{item.description}}</text>
+    </view>
+  </view>
+  <!-- 目录 -->
+  <view>
+    <view class='page_title'>
+      <image src='/images/tab.png' class='iconImg'></image>
+      <text>目录</text>
+    </view>
+    <view class='chapter_list'>
+      <navigator wx:for="{{chapters}}" wx:for-item="item" wx:key="index" url="/pages/cartoon/canvas?title={{item.title}}&cid={{item.cid}}" class='cartoonTarget'>
+        <image src='/images/hui.png' class='chapter_icon'></image>
+        <text class='chapter_count'>第{{index + 1}}章</text>
+        <text class='chapter_name'>{{item.title}}</text>
+        <text class='chapter_date'>{{item.last_update_datetime}}</text>
+      </navigator>
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <view class='list_btns'>
+    <button style='color:#ff9800'>加入收藏</button>
+    <button style='color:#228B22'>开始阅读</button>
+  </view>
+</view>

@@ -1,0 +1,33 @@
+/* pages/cartoon/index.wxss */
+.cartoonTarget{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 18rpx;
+  text-align: center;
+  width: 226rpx;
+  height: 300rpx;
+  margin-bottom: 120rpx;
+  color: #cfcfcf;
+}
+.cartoonItem{
+  width: 100%;
+  height: 100%;
+}
+.itemCover{
+  width: 100%;
+  height: 300rpx;
+  border-radius: 6px;
+}
+.itemName,.itemChapter{
+  display: block;
+  font-size: 22rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.itemName{
+  color: #000;
+  font-size: 28rpx !important;
+}
+
+

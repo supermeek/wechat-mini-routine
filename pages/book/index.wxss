@@ -1,0 +1,11 @@
+/* pages/book/index.wxss */
+page,.container{
+  height: 100%;
+  width: 100%;
+  background: #FA8072;
+}
+.home-bg{
+  margin-top: 20%;
+  height: 70%;
+  width: 60%;
+}

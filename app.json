@@ -1,0 +1,47 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/cartoon/index",
+    "pages/cartoon/detail",
+    "pages/cartoon/canvas",
+    "pages/movie/index",
+    "pages/book/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle":"black",
+    "backgroundColor": "#f8f8f8",
+    "enablePullDownRefresh": true,
+    "enableReachBottom": true
+  },
+  "tabBar":{
+    "list":[
+      {
+        "pagePath":"pages/index/index",
+        "text":"首页",
+        "iconPath":"images/home-off.png",
+        "selectedIconPath":"images/home-on.png"
+      },
+      {
+        "pagePath": "pages/cartoon/index",
+        "text": "漫画",
+        "iconPath": "images/cartoon-off.png",
+        "selectedIconPath": "images/cartoon-on.png"
+      },
+      {
+        "pagePath": "pages/movie/index",
+        "text": "电影",
+        "iconPath": "images/movie-off.png",
+        "selectedIconPath": "images/movie-on.png"
+      },
+      {
+        "pagePath": "pages/book/index",
+        "text": "书籍",
+        "iconPath": "images/book-off.png",
+        "selectedIconPath": "images/book-on.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+<!--pages/cartoon/canvas.wxml-->
+<view>
+  <view class='canvas_wrapper' scroll-view="true">
+    <image 
+        wx:for="{{contents}}" 
+        wx:for-item="item" 
+        wx:key="index" 
+        src="{{item.url}}" 
+        lazy-load="true"
+        mode="widthFix"
+    ></image>
+  </view>
+</view>
