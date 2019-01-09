@@ -1,6 +1,7 @@
 <!--pages/cartoon/canvas.wxml-->
 <view>
-  <view class='canvas_wrapper' scroll-view="true">
+  <pulldown id="pulldown"/>
+  <scroll-view class='canvas_wrapper'>
     <image 
         wx:for="{{contents}}" 
         wx:for-item="item" 
@@ -9,5 +10,6 @@
         lazy-load="true"
         mode="widthFix"
     ></image>
-  </view>
+  </scroll-view>
+  <pullup id="pullup"/>
 </view>

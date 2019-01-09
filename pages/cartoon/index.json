@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "漫画"
+  "navigationBarTitleText": "漫画",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "pullup": "/components/pullup"
+  }
 }

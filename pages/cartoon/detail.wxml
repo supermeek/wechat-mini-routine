@@ -39,4 +39,7 @@
     <button style='color:#ff9800'>加入收藏</button>
     <button style='color:#228B22'>开始阅读</button>
   </view>
+
+  <!-- 上拉加载 -->
+  <pullup id="pullup"/>
 </view>

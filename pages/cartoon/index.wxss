@@ -1,4 +1,10 @@
 /* pages/cartoon/index.wxss */
+.fixedTop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 .cartoonTarget{
   display: inline-block;
   vertical-align: top;
@@ -29,5 +35,3 @@
   color: #000;
   font-size: 28rpx !important;
 }
-
-

@@ -1,3 +1,4 @@
 <view class="container">
   <image class="home-bg" src="/images/luffy.jpg"></image>
+  <pullup id="pullup"/>
 </view>

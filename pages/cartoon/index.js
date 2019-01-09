@@ -1,14 +1,104 @@
 // pages/cartoon/index.js
-Page({
+const app = getApp();
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
     inputShowed: false,
     inputVal: "",
+    isFixedTop: false,
     list:[],
-    src: '/images/luffy.jpg',
+    nextPage: null,
+    lasttPage: null
+  },
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+
+  onLoad: function (options) {
+    this.pullup = this.selectComponent("#pullup");
+    this.loadList( null );
+  },
+
+  /**
+   * 监听页面滚动
+   */
+  onPageScroll: function (e) {
+    if ( e.scrollTop > 100 ){
+      this.setData({
+        isFixedTop: true
+      })
+    }else{
+      this.setData({
+        isFixedTop: false
+      })
+    }
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    console.log('----下拉刷新列表----')
+    wx.showNavigationBarLoading()
+    this.loadList( null );
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    console.log("-----加载更多-----")
+    this.pullup.loadMore()
+    if (this.data.nextPage == null){
+      this.pullup.loadMoreComplete("已全部加载")
+    }else{
+      setTimeout(() => {
+        this.loadList(this.data.nextPage);
+      }, 1000)
+    }
+  },
+
+  /**
+   * 加载列表
+   */
+  loadList: function ( api ) {
+    var that = this
+    app.service.getCartoonList( api )
+      .then(res => {
+        console.log(res);
+        wx.stopPullDownRefresh()
+        wx.hideNavigationBarLoading()
+        for (var i = 0; i < res.data.length; i++) {
+          res.data[i].item_string = JSON.stringify(res.data[i]);
+        }
+        if( api == null ){
+          that.setData({
+            list: res.data,
+            nextPage: res.links.next,
+            lastPage: res.links.previous
+          })
+        }else{
+          that.setData({
+            list: that.data.list.concat(res.data),
+            nextPage: res.links.next,
+            lastPage: res.links.previous
+          })
+        }
+        that.pullup.loadMoreComplete("加载成功")
+      })
+      .catch(res => {
+        wx.stopPullDownRefresh()
+        wx.hideNavigationBarLoading()
+        wx.showToast({
+          title: '出错了！',
+          icon: 'none'
+        })
+        that.pullup.loadMoreComplete("加载失败")
+      })
   },
 
   /**
@@ -34,93 +124,8 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-
-  onLoad: function (options) {
-    this.loadList();
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    console.log("到顶啦")
-    console.log('--------下拉刷新-------')
-    // wx.showNavigationBarLoading() //在标题栏中显示加载
-    // wx.stopPullDownRefresh()
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    console.log("到底啦")
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
-  /**
-   * 加载列表
-   */
-  loadList: function () {
-    var that = this;
-    wx.request({
-      url: 'http://yueyatianchong.cn/api/spider/books/',
-      data: {},
-      header: {
-        'content-type': 'json',
-        'Authorization': "Token 7f0ea9def8943bac7f343b63d38bfab194609ac5"
-      },
-      success: function (res) {
-        for (var i = 0; i < res.data.data.length; i++) {
-          res.data.data[i].item_string = JSON.stringify(res.data.data[i]);
-        }
-        that.setData({
-          list: that.data.list.concat(res.data.data)
-        });
-        console.log(res.data)
-      },
-      fail: function () {
-        console.log("列表加载失败");
-      }
-    })
   }
+
+
 })
 
