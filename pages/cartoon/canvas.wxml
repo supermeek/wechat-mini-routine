@@ -1,12 +1,13 @@
 <!--pages/cartoon/canvas.wxml-->
 <view>
   <pulldown id="pulldown"/>
-  <scroll-view class='canvas_wrapper'>
+  <scroll-view class='canvas_wrapper' scroll-y>
     <image 
+        class='item'
         wx:for="{{contents}}" 
         wx:for-item="item" 
         wx:key="index" 
-        src="{{item.url}}" 
+        src='{{arr[index] ? item.url : imageDefault}}'
         lazy-load="true"
         mode="widthFix"
     ></image>

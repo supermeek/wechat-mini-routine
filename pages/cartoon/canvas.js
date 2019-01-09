@@ -11,6 +11,10 @@ Page({
     contents: [],
     nextPage: null,
     lasttPage: null,
+    imageDefault: "/images/loading4.gif",
+    arr: [],
+    arrTop: [],
+    itemHeight: 0
   },
 
   /**
@@ -27,6 +31,52 @@ Page({
       title: this.data.title,
     })
     this.loadContent(this.data.cid, null, 0);
+  },
+
+  /**
+   * 页面渲染完成之后
+   */
+  onReady: function(){
+    setTimeout(()=>{
+      this.getRect();
+    }, 1000)
+  },
+
+  // 获取单张图片的高度
+  getRect: function(){
+    var that = this;
+    wx.createSelectorQuery().select(".item").boundingClientRect(function(rect){
+      that.setData({ itemHeight: rect.height })
+      that.init(rect.height)
+    }).exec()
+  },
+
+  init: function (itemHeight){
+    let index = parseFloat(app.globalData.windowHeight / itemHeight)
+    for (let i = 0; i < index; i++) {
+      this.data.arr[i] = true
+    }
+    this.setData({arr: this.data.arr})
+    // 遍历每个图片相对于顶部的高度值
+    for(let i = 0; i < this.data.arr.length; i++){
+      this.data.arrTop[i] = Math.floor(i * itemHeight)
+    }
+    this.setData({ arrTop: this.data.arrTop })
+  },
+
+  /**
+   * 监控页面滚动
+   */
+  onPageScroll: function(e){
+    // 滚动监听每个图片高度值是否小于滚动条高度，从而改变数值arr里对应的布尔值
+    for(var i = 0; i < this.data.arrTop.length; i++){
+      if( this.data.arrTop[i] < e.scrollTop + app.globalData.windowHeight ){
+        if( this.data.arr[i] === false ){
+          this.data.arr[i] = true
+        }
+      }
+    }
+    this.setData({ arr: this.data.arr })
   },
 
 
@@ -75,7 +125,15 @@ Page({
         wx.stopPullDownRefresh()
         wx.hideNavigationBarLoading()
         for (var i = 0; i < res.data.length; i++) {
-          res.data[i].item_string = JSON.stringify(res.data[i]);
+          if (api == null) {
+            that.data.arr.push(false)
+          }else{
+            if( type == 1 ){
+              that.data.arr.unshift(false)
+            }else if( type == 2 ){
+              that.data.arr.push(false)
+            }
+          }
         }
         if (api == null) {
           that.setData({
@@ -114,25 +172,5 @@ Page({
           that.pullup.loadMoreComplete("加载失败")
         }
       })
-
-
-    // var that = this;
-    // wx.request({
-    //   url: 'http://yueyatianchong.cn/api/spider/chapters/' + cid +'/pages/',
-    //   data: {},
-    //   header: {
-    //     'content-type': 'json',
-    //     'Authorization': "Token e336203a71ad99e42a02cc0e41e1fa00610ec98a"
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data)
-    //     that.setData({
-    //       contents: that.data.contents.concat(res.data.data)
-    //     });
-    //   },
-    //   fail: function () {
-    //     console.log("详情加载失败");
-    //   }
-    // })
   }
 })

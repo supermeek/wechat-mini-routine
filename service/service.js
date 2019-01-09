@@ -10,7 +10,7 @@ class service {
     this._baseUrl = 'http://yueyatianchong.cn/'
     this._defaultHeader = {
       'content-type': 'json',
-      'Authorization': "Token e336203a71ad99e42a02cc0e41e1fa00610ec98a"
+      'Authorization': "Token 5c1c28a7ecff95e65532e3179228ff38c08f20f4"
     }
     this._request = new request
     this._request.setErrorHandler(this.errorHander)
