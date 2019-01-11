@@ -47,6 +47,7 @@ Page({
     var that = this;
     wx.createSelectorQuery().select(".item").boundingClientRect(function(rect){
       that.setData({ itemHeight: rect.height })
+      console.log(rect.height);
       that.init(rect.height)
     }).exec()
   },
@@ -71,13 +72,13 @@ Page({
   onPageScroll: function(e){
     // 滚动监听每个图片高度值是否小于滚动条高度，从而改变数值arr里对应的布尔值
     for(var i = 0; i < this.data.arrTop.length; i++){
-      console.log(this.data.arrTop[i]);
-      console.log(e.scrollTop + app.globalData.windowHeight * 2 + 200);
-      console.log("---------------")
+      // console.log(this.data.arrTop[i]);
+      // console.log(e.scrollTop + app.globalData.windowHeight * 2 + 200);
+      // console.log("---------------")
     if (this.data.arrTop[i] < e.scrollTop + app.globalData.windowHeight*2 + 200){
         if( this.data.arr[i] === false ){
           this.data.arr[i] = true
-          console.log("****************")
+          // console.log("****************")
         }
       }
     }
@@ -130,16 +131,15 @@ Page({
         wx.stopPullDownRefresh()
         wx.hideNavigationBarLoading()
         for (var i = 0; i < res.data.length; i++) {
-          if (api == null) {
-            that.data.arr.push(false)
+          if(api == null || type == 2){
+            that.data.arr.push(true)
           }else{
-            if( type == 1 ){
-              that.data.arr.unshift(false)
-            }else if( type == 2 ){
-              that.data.arr.push(false)
-            }
+            that.data.arr.unshift(true)
           }
         }
+
+        console.log(that.data.arr)
+
         if (api == null) {
           that.setData({
             contents: res.data,
@@ -147,6 +147,7 @@ Page({
             lastPage: res.links.previous
           })
         } else {
+          that.getRect();
           if ( type == 1 ){
             that.setData({
               contents: res.data.concat(that.data.contents),
