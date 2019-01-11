@@ -7,14 +7,19 @@
 import request from './request.js'
 class service {
   constructor() {
-    this._baseUrl = 'http://yueyatianchong.cn/'
+    this._baseUrl = 'http://yueyatianchong.cn'
     this._defaultHeader = {
-      'content-type': 'json',
-      'Authorization': "Token 5c1c28a7ecff95e65532e3179228ff38c08f20f4"
+      'content-type':'application/json; charset=UTF-8',
     }
     this._request = new request
     this._request.setErrorHandler(this.errorHander)
     this._request._header = this._defaultHeader
+    
+  }
+
+  setHeader( key ){
+    console.log("设置header")
+    this._defaultHeader.Authorization = "Token " + key;
   }
 
   /**
@@ -23,6 +28,18 @@ class service {
   errorHander(res) {
     console.error(res)
   }
+
+  /**
+   * 登录
+  */
+  
+  login(api = null) {
+    let data = { username: 'pangzi', password: 'Xingyue99'}
+    let url = (api == null ? this._baseUrl + '/api/login/' : api)
+    return this._request.postRequest(url, data).then(res => res.data)
+  }
+  
+
 
   /**
    * 查询漫画列表
@@ -52,4 +69,5 @@ class service {
   }
 
 }
+
 export default service

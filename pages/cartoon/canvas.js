@@ -62,6 +62,7 @@ Page({
       this.data.arrTop[i] = Math.floor(i * itemHeight)
     }
     this.setData({ arrTop: this.data.arrTop })
+    console.log(this.data.arrTop);
   },
 
   /**
@@ -70,9 +71,13 @@ Page({
   onPageScroll: function(e){
     // 滚动监听每个图片高度值是否小于滚动条高度，从而改变数值arr里对应的布尔值
     for(var i = 0; i < this.data.arrTop.length; i++){
-      if( this.data.arrTop[i] < e.scrollTop + app.globalData.windowHeight ){
+      console.log(this.data.arrTop[i]);
+      console.log(e.scrollTop + app.globalData.windowHeight * 2 + 200);
+      console.log("---------------")
+    if (this.data.arrTop[i] < e.scrollTop + app.globalData.windowHeight*2 + 200){
         if( this.data.arr[i] === false ){
           this.data.arr[i] = true
+          console.log("****************")
         }
       }
     }

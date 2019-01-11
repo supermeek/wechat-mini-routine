@@ -5,7 +5,9 @@
     "pages/cartoon/detail",
     "pages/cartoon/canvas",
     "pages/movie/index",
-    "pages/book/index"
+    "pages/book/index",
+    "pages/collect/index",
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"dark",
