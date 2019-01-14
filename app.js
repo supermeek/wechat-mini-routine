@@ -28,13 +28,7 @@ App({
       }
     })
 
-    // 登录
-    wx.login({
-      success: res => {
-        // console.log(res)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    });
+    
 
 
     // 获取用户信息
@@ -72,16 +66,25 @@ App({
 
 
   onShow: function () {
-    // 登录获取token
-    this.service.login().then(res => {
-      this.service.setHeader(res.data.key)
-      wx.setStorageSync('ManYingkey', "Token " + res.data.key)
-    }).catch(res => {
-      wx.showToast({
-        title: '出错了！',
-        icon: 'none'
-      })
-    })
+    var that = this;
+    // 登录
+    wx.login({
+      success: res => {
+        // console.log(res)
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // 登录获取token
+        this.service.wxlogin(res.code).then(res => {
+          // console.log(res);
+          this.service.setHeader(res.data)
+          // wx.setStorageSync('ManYingkey', "Token " + res.data)
+        }).catch(res => {
+          wx.showToast({
+            title: '出错了！',
+            icon: 'none'
+          })
+        })
+      }
+    });
   },
   
 

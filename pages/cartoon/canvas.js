@@ -47,7 +47,7 @@ Page({
     var that = this;
     wx.createSelectorQuery().select(".item").boundingClientRect(function(rect){
       that.setData({ itemHeight: rect.height })
-      console.log(rect.height);
+      // console.log(rect.height);
       that.init(rect.height)
     }).exec()
   },
@@ -63,7 +63,7 @@ Page({
       this.data.arrTop[i] = Math.floor(i * itemHeight)
     }
     this.setData({ arrTop: this.data.arrTop })
-    console.log(this.data.arrTop);
+    // console.log(this.data.arrTop);
   },
 
   /**
@@ -90,7 +90,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('----下拉刷新列表----')
+    // console.log('----下拉刷新列表----')
     this.pulldown.loadMore()
     if (this.data.lasttPage == null) {
       this.pulldown.loadMoreComplete("没有上一页")
@@ -108,7 +108,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log("-----加载更多-----")
+    // console.log("-----加载更多-----")
     this.pullup.loadMore()
     if (this.data.nextPage == null) {
       this.pullup.loadMoreComplete("没有下一页")
@@ -119,12 +119,15 @@ Page({
     }
   },
 
+  loadImg: function(e){
+    console.log(e)
+  },
+
   /**
    * 加载内容
    */
   loadContent: function (cid, api, type) {
     var that = this;
-    console.log(api);
     app.service.getCartoonContent(cid, api)
       .then(res => {
         console.log(res);
@@ -132,13 +135,11 @@ Page({
         wx.hideNavigationBarLoading()
         for (var i = 0; i < res.data.length; i++) {
           if(api == null || type == 2){
-            that.data.arr.push(true)
+            that.data.arr.push(false)
           }else{
-            that.data.arr.unshift(true)
+            that.data.arr.unshift(false)
           }
         }
-
-        console.log(that.data.arr)
 
         if (api == null) {
           that.setData({

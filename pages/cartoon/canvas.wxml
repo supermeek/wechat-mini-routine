@@ -7,8 +7,10 @@
         wx:for="{{contents}}" 
         wx:for-item="item" 
         wx:key="index" 
-        src='{{arr[index] ? item.url : imageDefault}}'
+        src="{{item.url}}"
+        
         lazy-load="true"
+        bindload="loadImg"
         mode="widthFix"
     ></image>
   </scroll-view>

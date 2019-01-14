@@ -11,7 +11,7 @@ Page({
     isFixedTop: false,
     list:[],
     nextPage: null,
-    lasttPage: null
+    lasttPage: null,
   },
 
 
@@ -21,7 +21,7 @@ Page({
 
   onLoad: function (options) {
     this.pullup = this.selectComponent("#pullup");
-    this.loadList( null );
+    this.loadList();
   },
 
   /**
@@ -44,7 +44,7 @@ Page({
   onPullDownRefresh: function () {
     console.log('----下拉刷新列表----')
     wx.showNavigationBarLoading()
-    this.loadList( null );
+    this.loadList();
   },
 
   /**
@@ -57,17 +57,18 @@ Page({
       this.pullup.loadMoreComplete("已全部加载")
     }else{
       setTimeout(() => {
-        this.loadList(this.data.nextPage);
+        this.loadList(null, this.data.nextPage);
       }, 1000)
     }
   },
 
   /**
    * 加载列表
+   * parameter：name:搜索名称，api:下一页的api地址
    */
-  loadList: function ( api ) {
+  loadList: function (name, api ) {
     var that = this
-    app.service.getCartoonList( api )
+    app.service.getCartoonList(name, api )
       .then(res => {
         console.log(res);
         wx.stopPullDownRefresh()
@@ -110,17 +111,21 @@ Page({
     });
   },
   hideInput: function () {
+    this.loadList()
     this.setData({
       inputVal: "",
       inputShowed: false
     });
   },
   clearInput: function () {
+    // this.loadList()
     this.setData({
       inputVal: ""
     });
   },
   inputTyping: function (e) {
+    this.loadList(e.detail.value, null)
+    console.log(e.detail)
     this.setData({
       inputVal: e.detail.value
     });
