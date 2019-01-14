@@ -11,10 +11,10 @@ Page({
     contents: [],
     nextPage: null,
     lasttPage: null,
+    nextCid: null,
+    lastCid: null,
     imageDefault: "/images/loading4.gif",
     arr: [],
-    arrTop: [],
-    itemHeight: 0
   },
 
   /**
@@ -25,7 +25,8 @@ Page({
     this.pulldown = this.selectComponent("#pulldown");
     this.setData({
       title: options.title,
-      cid: options.cid
+      cid: options.cid,
+      arr: []
     });
     wx.setNavigationBarTitle({
       title: this.data.title,
@@ -37,52 +38,18 @@ Page({
    * 页面渲染完成之后
    */
   onReady: function(){
-    setTimeout(()=>{
-      this.getRect();
-    }, 1000)
+    this.data.arr[0] = true
+    this.setData({
+      arr: this.data.arr
+    })      
   },
 
-  // 获取单张图片的高度
-  getRect: function(){
-    var that = this;
-    wx.createSelectorQuery().select(".item").boundingClientRect(function(rect){
-      that.setData({ itemHeight: rect.height })
-      // console.log(rect.height);
-      that.init(rect.height)
-    }).exec()
-  },
-
-  init: function (itemHeight){
-    let index = parseFloat(app.globalData.windowHeight / itemHeight)
-    for (let i = 0; i < index; i++) {
-      this.data.arr[i] = true
-    }
-    this.setData({arr: this.data.arr})
-    // 遍历每个图片相对于顶部的高度值
-    for(let i = 0; i < this.data.arr.length; i++){
-      this.data.arrTop[i] = Math.floor(i * itemHeight)
-    }
-    this.setData({ arrTop: this.data.arrTop })
-    // console.log(this.data.arrTop);
-  },
 
   /**
    * 监控页面滚动
    */
   onPageScroll: function(e){
-    // 滚动监听每个图片高度值是否小于滚动条高度，从而改变数值arr里对应的布尔值
-    for(var i = 0; i < this.data.arrTop.length; i++){
-      // console.log(this.data.arrTop[i]);
-      // console.log(e.scrollTop + app.globalData.windowHeight * 2 + 200);
-      // console.log("---------------")
-    if (this.data.arrTop[i] < e.scrollTop + app.globalData.windowHeight*2 + 200){
-        if( this.data.arr[i] === false ){
-          this.data.arr[i] = true
-          // console.log("****************")
-        }
-      }
-    }
-    this.setData({ arr: this.data.arr })
+    
   },
 
 
@@ -90,17 +57,23 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    // console.log('----下拉刷新列表----')
     this.pulldown.loadMore()
     if (this.data.lasttPage == null) {
-      this.pulldown.loadMoreComplete("没有上一页")
-      setTimeout(() => {
-        wx.stopPullDownRefresh();
-      }, 500)
+      if (this.data.lastCid == null) {
+        this.pulldown.loadMoreComplete("没有上一页")
+        setTimeout(() => {
+          wx.stopPullDownRefresh();
+        }, 500)
+      } else {
+        setTimeout(() => {
+          this.loadContent(this.data.lastCid, null, 1);
+        }, 1000)
+      }
     } else {
       setTimeout(() => {
         this.loadContent(this.data.cid, this.data.lasttPage, 1);
       }, 1000)
+      
     }
   },
 
@@ -108,10 +81,15 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    // console.log("-----加载更多-----")
     this.pullup.loadMore()
     if (this.data.nextPage == null) {
-      this.pullup.loadMoreComplete("没有下一页")
+      if( this.data.nextCid == null ){
+        this.pullup.loadMoreComplete("没有下一页")
+      }else{
+        setTimeout(() => {
+          this.loadContent(this.data.nextCid, null, 2);
+        }, 1000)
+      }
     } else {
       setTimeout(() => {
         this.loadContent(this.data.cid, this.data.nextPage, 2);
@@ -120,11 +98,22 @@ Page({
   },
 
   loadImg: function(e){
-    console.log(e)
+    // console.log(e)
+    var index = e.currentTarget.dataset.id;
+    if (this.data.arr[index - 1] === false){
+      this.data.arr[index - 1] = true
+    } else if (this.data.arr[index + 1] === false ){
+      this.data.arr[index + 1] = true
+    }
+    this.setData({
+      arr: this.data.arr
+    })
   },
 
   /**
    * 加载内容
+   * parameter:{ cid：每一章的识别id， api：翻页的url }
+   * remark: type: 0=首次加载 / 1=加载上一页 / 2=加载下一页
    */
   loadContent: function (cid, api, type) {
     var that = this;
@@ -134,37 +123,38 @@ Page({
         wx.stopPullDownRefresh()
         wx.hideNavigationBarLoading()
         for (var i = 0; i < res.data.length; i++) {
-          if(api == null || type == 2){
+          if (type == 0 || type == 2){
             that.data.arr.push(false)
           }else{
             that.data.arr.unshift(false)
           }
         }
+        
 
-        if (api == null) {
+        if (type == 0) {
           that.setData({
-            contents: res.data,
-            nextPage: res.links.next,
-            lastPage: res.links.previous
+            contents: res.data
           })
         } else {
-          that.getRect();
           if ( type == 1 ){
             that.setData({
-              contents: res.data.concat(that.data.contents),
-              nextPage: res.links.next,
-              lastPage: res.links.previous
+              contents: res.data.concat(that.data.contents)
             })
             that.pulldown.loadMoreComplete("加载成功")
           } else if ( type == 2 ){
             that.setData({
               contents: that.data.contents.concat(res.data),
-              nextPage: res.links.next,
-              lastPage: res.links.previous
             })
             that.pullup.loadMoreComplete("加载成功")
           }
         }
+        that.setData({
+          nextPage: res.links.next,
+          lastPage: res.links.previous,
+          nextCid: res.chapter_link.next_cid,
+          lastCid: res.chapter_link.previous_cid
+        })
+
       })
       .catch(res => {
         wx.stopPullDownRefresh()

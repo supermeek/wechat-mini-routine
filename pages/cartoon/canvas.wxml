@@ -7,8 +7,8 @@
         wx:for="{{contents}}" 
         wx:for-item="item" 
         wx:key="index" 
-        src="{{item.url}}"
-        
+        data-id="{{index}}"
+        src='{{arr[index] ? item.url : ""}}'
         lazy-load="true"
         bindload="loadImg"
         mode="widthFix"

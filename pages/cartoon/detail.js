@@ -30,14 +30,12 @@ Page({
       title: this.data.item.title,
     })
     this.loadDetail( this.data.item.mid, null );
-    // console.log(JSON.parse(options.item));
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('----下拉刷新列表----')
     wx.showNavigationBarLoading()
     this.loadDetail(this.data.item.mid, null);
   },
@@ -46,7 +44,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log("-----加载更多-----")
     this.pullup.loadMore()
     if (this.data.nextPage == null) {
       this.pullup.loadMoreComplete("已全部加载")
@@ -63,7 +60,6 @@ Page({
    */
   loadDetail: function ( mid, api ) {
     var that = this;
-    console.log(api);
     app.service.getCartoonDetail( mid, api )
       .then(res => {
         console.log(res);
