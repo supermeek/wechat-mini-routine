@@ -65,15 +65,16 @@ Page({
           wx.stopPullDownRefresh();
         }, 500)
       } else {
+        this.pulldown.loadMoreComplete("跳转至上一章...")
         setTimeout(() => {
           this.loadContent(this.data.lastCid, null, 1);
         }, 1000)
       }
     } else {
+      this.pulldown.loadMoreComplete("跳转至上一页...")
       setTimeout(() => {
         this.loadContent(this.data.cid, this.data.lasttPage, 1);
       }, 1000)
-      
     }
   },
 
@@ -97,6 +98,7 @@ Page({
     }
   },
 
+  // 图片加载完成事件
   loadImg: function(e){
     // console.log(e)
     var index = e.currentTarget.dataset.id;
@@ -107,6 +109,22 @@ Page({
     }
     this.setData({
       arr: this.data.arr
+    })
+  },
+
+
+  //图片点击事件
+  previewImg: function(event) {
+    console.log(event)
+    var src = event.currentTarget.dataset.src;//获取data-src
+    var list = []
+    for (var key in this.data.contents){
+      list.push(this.data.contents[key].url)
+    }
+    //图片预览
+    wx.previewImage({
+      current: src, // 当前显示图片的http链接
+      urls: list // 需要预览的图片http链接列表
     })
   },
 
@@ -140,12 +158,10 @@ Page({
             that.setData({
               contents: res.data.concat(that.data.contents)
             })
-            that.pulldown.loadMoreComplete("加载成功")
           } else if ( type == 2 ){
             that.setData({
               contents: that.data.contents.concat(res.data),
             })
-            that.pullup.loadMoreComplete("加载成功")
           }
         }
         that.setData({

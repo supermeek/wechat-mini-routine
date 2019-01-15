@@ -1,2 +1,74 @@
-<!--pages/collect/index.wxml-->
-<text>pages/collect/index.wxml</text>
+<!-- 收藏夹 -->
+<view class="item-box">
+
+  <view class="items">
+    <view class='page_title'>
+      <image src='/images/cartoon-on.png' class='iconImg'></image>
+      <text>收藏漫画</text>
+    </view>
+    <view wx:for="{{list}}" wx:key="{{index}}" class="item">
+      <view
+      bind:touchstart="touchS"
+      bindtouchmove="touchM"
+      bindtouchend="touchE"
+      data-index="{{index}}"
+      style="{{item.txtStyle}}"
+      class="inner txt">
+        <image class="item-icon" mode="aspectFill" src="{{item.icon}}"></image>
+        <text class="item__title">{{item.title}}</text>
+        <text class="item__status">{{item.speed}}</text>
+        <text class="item__speed">{{item.status}}</text>
+        <text class="item__read">{{item.txt}}</text>
+      </view>
+      <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
+    </view>
+    <view class='learn_more'><text>查看更多>></text></view>
+  </view>
+
+  <view class="items">
+    <view class='page_title'>
+      <image src='/images/book-on.png' class='iconImg'></image>
+      <text>收藏书籍</text>
+    </view>
+    <view wx:for="{{list}}" wx:key="{{index}}" class="item">
+      <view
+      bind:touchstart="touchS"
+      bindtouchmove="touchM"
+      bindtouchend="touchE"
+      data-index="{{index}}"
+      style="{{item.txtStyle}}"
+      class="inner txt">
+        <image class="item-icon" mode="aspectFill" src="http://img.1whour.com/xpic/14岁恋爱.jpg"></image>
+        <text class="item__title">{{item.title}}</text>
+        <text class="item__status">{{item.speed}}</text>
+        <text class="item__speed">{{item.status}}</text>
+        <text class="item__read">{{item.txt}}</text>
+      </view>
+      <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
+    </view>
+  </view>
+
+  <view class="items">
+    <view class='page_title'>
+      <image src='/images/movie-on.png' class='iconImg'></image>
+      <text>收藏电影</text>
+    </view>
+    <view wx:for="{{list}}" wx:key="{{index}}" class="item">
+      <view
+      bind:touchstart="touchS"
+      bindtouchmove="touchM"
+      bindtouchend="touchE"
+      data-index="{{index}}"
+      style="{{item.txtStyle}}"
+      class="inner txt">
+        <image class="item-icon" mode="aspectFill" src="http://img.1whour.com/xpic/30岁保健体育恋爱升级.jpg"></image>
+        <text class="item__title">{{item.title}}</text>
+        <text class="item__status">{{item.speed}}</text>
+        <text class="item__speed">{{item.status}}</text>
+        <text class="item__read">{{item.txt}}</text>
+      </view>
+      <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
+    </view>
+  </view>
+
+</view>

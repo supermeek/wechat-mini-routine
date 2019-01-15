@@ -41,6 +41,12 @@
         "text": "书籍",
         "iconPath": "images/book-off.png",
         "selectedIconPath": "images/book-on.png"
+      },
+      {
+        "pagePath": "pages/collect/index",
+        "text": "收藏",
+        "iconPath": "images/collect-off.png",
+        "selectedIconPath": "images/collect-on.png"
       }
     ]
   }

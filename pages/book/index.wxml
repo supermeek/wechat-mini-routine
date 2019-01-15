@@ -1,4 +1,5 @@
 <!--pages/book/index.wxml-->
 <view class="container">
   <image class="home-bg" src="/images/luffy.jpg"></image>
+  <rich-text nodes="{{html}}"></rich-text>
 </view>

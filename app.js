@@ -67,7 +67,6 @@ App({
 
   onShow: function () {
     var that = this;
-    // 登录
     wx.login({
       success: res => {
         // console.log(res)
@@ -76,7 +75,6 @@ App({
         this.service.wxlogin(res.code).then(res => {
           // console.log(res);
           this.service.setHeader(res.data)
-          // wx.setStorageSync('ManYingkey', "Token " + res.data)
         }).catch(res => {
           wx.showToast({
             title: '出错了！',

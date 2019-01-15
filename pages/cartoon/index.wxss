@@ -35,3 +35,13 @@
   color: #000;
   font-size: 28rpx !important;
 }
+.weui-cell__bd{
+  height: 60rpx;
+  line-height: 60rpx;
+  text-indent: 30rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.weui-cell__bd>view{
+  color: #666;
+  font-size:24rpx;
+}

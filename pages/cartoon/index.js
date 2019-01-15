@@ -7,6 +7,7 @@ Page({
    */
   data: {
     inputShowed: false,
+    showHistory: false,
     inputVal: "",
     isFixedTop: false,
     list:[],
@@ -123,11 +124,17 @@ Page({
       inputVal: ""
     });
   },
+  // showHistoryBlock: function(){
+  //   this.setData({
+  //     showHistory: true
+  //   });
+  // },
   inputTyping: function (e) {
     this.loadList(e.detail.value, null)
     console.log(e.detail)
     this.setData({
-      inputVal: e.detail.value
+      inputVal: e.detail.value,
+      showHistory: false
     });
   }
 

@@ -8,9 +8,11 @@
         wx:for-item="item" 
         wx:key="index" 
         data-id="{{index}}"
+        data-src="{{item.url}}"
         src='{{arr[index] ? item.url : ""}}'
         lazy-load="true"
         bindload="loadImg"
+        bindtap='previewImg'
         mode="widthFix"
     ></image>
   </scroll-view>
