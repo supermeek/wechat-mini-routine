@@ -6,10 +6,11 @@ view{
 }
 .items{
   width: 100%;
-  margin-bottom: 80rpx;
 }
 .item{
   position: relative;
+  width:710rpx;
+  margin-left:20rpx;
   border-bottom: 1rpx solid #ddd;
   height: 120rpx;
   line-height: 120rpx;
@@ -78,7 +79,7 @@ view{
   padding-right:20rpx;
   height: 60rpx;
   line-height: 60rpx;
-  border-bottom:1rpx solid #ddd;
+  /* border-bottom:1rpx solid #ddd; */
 }
 .learn_more>text{
  display:block;

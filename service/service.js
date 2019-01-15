@@ -28,14 +28,6 @@ class service {
     console.error(res)
   }
 
-  
-  
-  
-  
-  
-  
-  
-  
 
   /**
    * function: 微信code登录

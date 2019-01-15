@@ -46,6 +46,7 @@
       </view>
       <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
     </view>
+    <view class='learn_more'><text>查看更多>></text></view>
   </view>
 
   <view class="items">
@@ -69,6 +70,7 @@
       </view>
       <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
     </view>
+    <view class='learn_more'><text>查看更多>></text></view>
   </view>
 
 </view>
