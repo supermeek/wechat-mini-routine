@@ -9,6 +9,7 @@ Page({
     delBtnWidth: 180, //删除按钮宽度单位（rpx）
     list: [
       {
+        id: 0,
         txtStyle: "",
         title: "火影忍者啊",
         icon: "http://img.1whour.com/xpic/hacklink.jpg",
@@ -17,11 +18,48 @@ Page({
         speed: "更新至248话"
       },
       {
+        id: -1,
         txtStyle: "",
         title: "海贼王",
         icon: "/images/201.jpg",
         txt: "阅读至第12话",
         status:"已完结",
+        speed: "更新至12话"
+      },
+      {
+        id: 1,
+        txtStyle: "",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
+        txt: "阅读至第12话",
+        status: "连载中",
+        speed: "更新至248话"
+      },
+      {
+        id: 2,
+        txtStyle: "",
+        title: "海贼王",
+        icon: "/images/201.jpg",
+        txt: "阅读至第12话",
+        status: "已完结",
+        speed: "更新至12话"
+      },
+      {
+        id: 3,
+        txtStyle: "",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
+        txt: "阅读至第12话",
+        status: "连载中",
+        speed: "更新至248话"
+      },
+      {
+        id: 4,
+        txtStyle: "",
+        title: "海贼王",
+        icon: "/images/201.jpg",
+        txt: "阅读至第12话",
+        status: "已完结",
         speed: "更新至12话"
       }
     ]

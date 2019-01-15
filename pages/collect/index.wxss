@@ -1,15 +1,24 @@
 view{
   box-sizing: border-box;
+  background: #f8f8f8;
 }
 .item-box{
   width: 750rpx;
 }
 .items{
-  width: 100%;
+  /* width: 100%; */
+  width: 700rpx;
+  margin-left:25rpx;
+  margin-bottom: 20px;
+  background: #fff;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .item{
   position: relative;
-  width:710rpx;
+  width:660rpx;
   margin-left:20rpx;
   border-bottom: 1rpx solid #ddd;
   height: 120rpx;
@@ -24,7 +33,7 @@ view{
   background-color: #fff;
   width: 100%;
   z-index: 5;
-  padding:0 20rpx;
+  /* padding:0 20rpx; */
   transition: left 0.2s ease-in-out;
   white-space: nowrap;
   overflow: hidden;
@@ -77,12 +86,21 @@ view{
 .learn_more{
   text-align:right;
   padding-right:20rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  /* border-bottom:1rpx solid #ddd; */
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  border-bottom:1rpx solid #ddd;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
 }
 .learn_more>text{
  display:block;
  font-size:24rpx;
  color:#999;
+}
+.page_title{
+  background: #fff !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }

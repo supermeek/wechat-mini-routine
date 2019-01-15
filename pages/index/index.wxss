@@ -1,31 +1,56 @@
-/**index.wxss**/
-.container {
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:space-between;
-  padding:200rpx 0;
-  box-sizing:border-box;
+view{
+  font-size: 0;
 }
-
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.item{
+  position: relative;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+._left{
+  color: #fff;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+._right{
+  color: #000;
 }
-
-.usermotto {
-  margin-top: 200px;
+.background{
+  width:100%;
+}
+._right .text__title,._right .text__subtitle,._right .text__content{
+  position: absolute;
+  right: 20rpx;
+}
+._left .text__title,._left .text__subtitle,._left .text__content{
+  position: absolute;
+  left: 20rpx;
+}
+._left .text__title{
+  background: #fff;
+  color: #000;
+  font-size: 30rpx;
+  top: 60rpx;
+}
+._right .text__title{
+  background: #000;
+  color: #fff;
+  font-size: 30rpx;
+  top: 70rpx;
+}
+.text__subtitle{
+  font-size: 34rpx;
+  font-weight: 600;
+  display: block;
+  top:130rpx;
+}
+.text__content{
+  display: block;
+  line-height: 30rpx !important;
+  font-size: 26rpx;
+  top: 200rpx;
+}
+.text__content._2{
+  top:245rpx;
+}
+.text__content._3{
+  top:290rpx;
 }
