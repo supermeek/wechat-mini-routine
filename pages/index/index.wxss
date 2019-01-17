@@ -1,36 +1,46 @@
+page{
+  height: 100%;
+
+}
 view{
   font-size: 0;
+  height: 100%;
 }
+.bg{
+  width:750rpx;
+  height: 100%;
+}
+
 .item{
   position: relative;
   width: 100%;
   margin: 0;
   box-sizing: border-box;
 }
-._left{
+._white{
   color: #fff;
 }
-._right{
+._block{
   color: #000;
 }
 .background{
   width:100%;
 }
-._right .text__title,._right .text__subtitle,._right .text__content{
+._left .text__title,._left .text__subtitle,._left .text__content{
   position: absolute;
   right: 20rpx;
 }
-._left .text__title,._left .text__subtitle,._left .text__content{
+._right .text__title,._right .text__subtitle,._right .text__content{
   position: absolute;
   left: 20rpx;
 }
-._left .text__title{
+._white .text__title{
   background: #fff;
   color: #000;
   font-size: 30rpx;
   top: 60rpx;
 }
-._right .text__title{
+._block .text__title{
   background: #000;
   color: #fff;
   font-size: 30rpx;

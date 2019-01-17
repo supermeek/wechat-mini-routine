@@ -74,9 +74,9 @@ Page({
         console.log(res);
         wx.stopPullDownRefresh()
         wx.hideNavigationBarLoading()
-        for (var i = 0; i < res.data.length; i++) {
-          res.data[i].item_string = JSON.stringify(res.data[i]);
-        }
+        // for (var i = 0; i < res.data.length; i++) {
+        //   res.data[i].item_string = JSON.stringify(res.data[i]);
+        // }
         if( api == null ){
           that.setData({
             list: res.data,

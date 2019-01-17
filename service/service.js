@@ -53,11 +53,22 @@ class service {
   }
 
   /**
+   * function: 查询某篇漫画详情
+   * parameter: {mid：单本漫画识别id，api：章节翻页}
+   * return: {code:0,count:20,data:[{mid:"3216",...},...],links:{next:'api?page=2',previous:null}}
+   */
+  getCartoonInfo(mid = 0, api = null) {
+    let data = { }
+    let url = (api == null ? this._baseUrl + '/api/spider/books/' + mid : api)
+    return this._request.getRequest(url, data).then(res => res.data)
+  }
+
+  /**
    * function: 获取某篇漫画章节
    * parameter: {mid：单本漫画识别id，api：章节翻页}
    * return: {code:0,count:20,data:[{mid:"3216",cid:"65536",...},...],links:{next:'api?page=2',previous:null}}
    */
-  getCartoonDetail(mid = 1570, api = null) {
+  getCartoonDetail(mid = 0, api = null) {
     let data = {}
     let url = (api == null ? this._baseUrl + '/api/spider/books/' + mid + '/chapters/' : api)
     return this._request.getRequest(url, data).then(res => res.data)

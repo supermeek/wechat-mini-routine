@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    mid: null,
     item: null,
     nextPage: null,
     lasttPage: null,
@@ -21,16 +22,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.item)
+    console.log(options.mid)
     var that = this;
     this.pullup = this.selectComponent("#pullup");
     this.setData({
-      item: JSON.parse(options.item)
+      mid: options.mid
     });
-    wx.setNavigationBarTitle({
-      title: this.data.item.title,
-    })
-    this.loadDetail( this.data.item.mid, null );
+    
+
+    this.loadInfo( options.mid, null);
+    this.loadDetail( options.mid, null );
   },
 
   /**
@@ -38,7 +39,8 @@ Page({
    */
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading()
-    this.loadDetail(this.data.item.mid, null);
+    this.loadInfo(this.data.mid, null);
+    this.loadDetail(this.data.mid, null);
   },
 
   /**
@@ -50,9 +52,38 @@ Page({
       this.pullup.loadMoreComplete("已全部加载")
     } else {
       setTimeout(() => {
-        this.loadDetail(this.data.item.mid, this.data.nextPage);
+        this.loadDetail(this.data.mid, this.data.nextPage);
       }, 1000)
     }
+  },
+
+
+  /**
+   * 加载详情信息
+   */
+  loadInfo: function (mid, api) {
+    var that = this;
+    app.service.getCartoonInfo(mid, api)
+      .then(res => {
+        console.log(res);
+        wx.stopPullDownRefresh()
+        wx.hideNavigationBarLoading()
+        that.setData({
+          item: res.data
+        })
+        wx.setNavigationBarTitle({
+          title: res.data.title,
+        })
+      })
+      .catch(res => {
+        wx.stopPullDownRefresh()
+        wx.hideNavigationBarLoading()
+        wx.showToast({
+          title: '出错了！',
+          icon: 'none'
+        })
+        that.pullup.loadMoreComplete("加载失败")
+      })
   },
 
 
@@ -66,9 +97,6 @@ Page({
         console.log(res);
         wx.stopPullDownRefresh()
         wx.hideNavigationBarLoading()
-        for (var i = 0; i < res.data.length; i++) {
-          res.data[i].item_string = JSON.stringify(res.data[i]);
-        }
         if (api == null) {
           that.setData({
             chapters: res.data,

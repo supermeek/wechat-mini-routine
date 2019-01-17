@@ -1,28 +1,29 @@
 <!--index.wxml-->
 <view class="container">
-  <view class='item _right'>
-    <image class='background' mode="widthFix" src="/images/bg5.jpg"></image>
+  <image class="bg" mode="scaleToFill" src="/images/timg4.jpg"></image>
+  <!-- <view class='item _right _block'>
+    <image class='background' mode="widthFix" src="/images/timg1.jpg"></image>
+    <text class='text__title'>漫画专区</text>
+    <text class='text__subtitle'>一入海贼，终生不悔</text>
+    <text class='text__content _1'>no matter what happens,</text>
+    <text class='text__content _2'>this symbol on our left arm,</text>
+    <text class='text__content _3'>will be the sign of frendship</text>
+  </view>
+  <view class='item _left _block'>
+    <image class='background' mode="widthFix" src="/images/timg2.jpg"></image>
     <text class='text__title'>漫画专区</text>
     <text class='text__subtitle'>一入海贼，终生不悔</text>
     <text class='text__content _1'>no matter what happens,</text>
     <text class='text__content _2'>this symbol on our left arm,</text>
     <text class='text__content _3'>shall forever be the sign of our frendship.</text>
   </view>
-  <view class='item _left'>
-    <image class='background' mode="widthFix" src="/images/bg4.jpg"></image>
+  <view class='item _left _block'>
+    <image class='background' mode="widthFix" src="/images/timg3.jpg"></image>
     <text class='text__title'>漫画专区</text>
     <text class='text__subtitle'>一入海贼，终生不悔</text>
     <text class='text__content _1'>no matter what happens,</text>
     <text class='text__content _2'>this symbol on our left arm,</text>
     <text class='text__content _3'>shall forever be the sign of our frendship.</text>
-  </view>
-  <view class='item _right'>
-    <image class='background' mode="widthFix" src="/images/bg7.jpg"></image>
-    <text class='text__title'>漫画专区</text>
-    <text class='text__subtitle'>一入海贼，终生不悔</text>
-    <text class='text__content _1'>no matter what happens,</text>
-    <text class='text__content _2'>this symbol on our left arm,</text>
-    <text class='text__content _3'>shall forever be the sign of our frendship.</text>
-  </view>
+  </view> -->
 </view>
  

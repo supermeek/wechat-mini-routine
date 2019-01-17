@@ -50,7 +50,7 @@
 
   <!-- 列表 -->
   <view>
-      <navigator wx:for="{{list}}" wx:for-item="item" wx:key="index" url="/pages/cartoon/detail?item={{item.item_string}}" class='cartoonTarget'>
+      <navigator wx:for="{{list}}" wx:for-item="item" wx:key="index" url="/pages/cartoon/detail?mid={{item.mid}}" class='cartoonTarget'>
         <view class='cartoonItem'>
           <image class="itemCover" src="{{item.cover}}" mode="aspectFill"></image>
           <text class='itemName'>{{item.title}}</text>
