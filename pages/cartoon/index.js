@@ -93,12 +93,6 @@ Page({
         that.pullup.loadMoreComplete("加载成功")
       })
       .catch(res => {
-        wx.stopPullDownRefresh()
-        wx.hideNavigationBarLoading()
-        wx.showToast({
-          title: '出错了！',
-          icon: 'none'
-        })
         that.pullup.loadMoreComplete("加载失败")
       })
   },

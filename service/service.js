@@ -7,7 +7,7 @@
 import request from './request.js'
 class service {
   constructor() {
-    this._baseUrl = 'http://yueyatianchong.cn'
+    this._baseUrl = 'https://yueyatianchong.cn'
     this._defaultHeader = {
       'content-type':'application/json; charset=UTF-8',
     }
@@ -25,7 +25,14 @@ class service {
    * 统一的异常处理方法
    */
   errorHander(res) {
+    console.error("接口报错了")
     console.error(res)
+    wx.stopPullDownRefresh()
+    wx.hideNavigationBarLoading()
+    wx.showToast({
+      title: '出错了！',
+      icon: 'none'
+    })
   }
 
 
@@ -59,7 +66,7 @@ class service {
    */
   getCartoonInfo(mid = 0, api = null) {
     let data = { }
-    let url = (api == null ? this._baseUrl + '/api/spider/books/' + mid : api)
+    let url = (api == null ? this._baseUrl + '/api/spider/books/' + mid + '/': api)
     return this._request.getRequest(url, data).then(res => res.data)
   }
 

@@ -75,15 +75,6 @@ Page({
           title: res.data.title,
         })
       })
-      .catch(res => {
-        wx.stopPullDownRefresh()
-        wx.hideNavigationBarLoading()
-        wx.showToast({
-          title: '出错了！',
-          icon: 'none'
-        })
-        that.pullup.loadMoreComplete("加载失败")
-      })
   },
 
 
@@ -113,12 +104,6 @@ Page({
         }
       })
       .catch(res => {
-        wx.stopPullDownRefresh()
-        wx.hideNavigationBarLoading()
-        wx.showToast({
-          title: '出错了！',
-          icon: 'none'
-        })
         that.pullup.loadMoreComplete("加载失败")
       })
   }

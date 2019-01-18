@@ -31,16 +31,16 @@
         "selectedIconPath": "images/cartoon-on.png"
       },
       {
-        "pagePath": "pages/movie/index",
-        "text": "电影",
-        "iconPath": "images/movie-off.png",
-        "selectedIconPath": "images/movie-on.png"
-      },
-      {
         "pagePath": "pages/book/index",
         "text": "书籍",
         "iconPath": "images/book-off.png",
         "selectedIconPath": "images/book-on.png"
+      },
+      {
+        "pagePath": "pages/movie/index",
+        "text": "电影",
+        "iconPath": "images/movie-off.png",
+        "selectedIconPath": "images/movie-on.png"
       },
       {
         "pagePath": "pages/collect/index",

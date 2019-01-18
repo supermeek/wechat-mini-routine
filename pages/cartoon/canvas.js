@@ -173,12 +173,6 @@ Page({
 
       })
       .catch(res => {
-        wx.stopPullDownRefresh()
-        wx.hideNavigationBarLoading()
-        wx.showToast({
-          title: '出错了！',
-          icon: 'none'
-        })
         if (type == 1) {
           that.pulldown.loadMoreComplete("加载失败")
         }else{
