@@ -4,18 +4,18 @@
   <!-- <image class="bg" mode="scaleToFill" src="/images/timg4.jpg"></image> -->
   <view class='item _left _block'>
     <image class='background' mode="widthFix" src="/images/timg13.jpg"></image>
-    <text class='text__title'>漫画专区</text>
+    <text class='text__title'>- 漫画 -</text>
     <text class='text__subtitle'>躲在某一时间，想念一段时光的掌纹；躲在某一地点，想念一个站在来路也站在去路的，让我牵挂的人。</text>
   </view>
   <view class='item _right _block'>
     <image class='background' mode="widthFix" src="/images/timg12.jpg"></image>
-    <text class='text__title'>书籍小屋</text>
+    <text class='text__title'>- 书籍 -</text>
   text-align: left;
     <text class='text__subtitle'>阴天，晴天，雨天，你最喜欢那种天气？</text>
   </view>
   <view class='item _left _block'>
     <image class='background' mode="widthFix" src="/images/timg15.jpg"></image>
-    <text class='text__title'>电影区域</text>
+    <text class='text__title'>- 电影 -</text>
     <text class='text__subtitle'>与你一起的那个夏天已经结束,将来的梦想、一起许下的愿望、我永生难忘。十年之后的八月,请相信我们一定能再见!</text>
   </view>
 </view>

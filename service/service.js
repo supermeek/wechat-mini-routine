@@ -25,12 +25,12 @@ class service {
    * 统一的异常处理方法
    */
   errorHander(res) {
-    console.error("接口报错了")
+    // console.error("接口报错了")
     console.error(res)
     wx.stopPullDownRefresh()
     wx.hideNavigationBarLoading()
     wx.showToast({
-      title: '出错了！',
+      title: '加载失败！',
       icon: 'none'
     })
   }
