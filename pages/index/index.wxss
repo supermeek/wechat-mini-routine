@@ -57,7 +57,7 @@ view{
   top:180rpx;
   color: #000;
   letter-spacing: 2px;
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
 }
 .white_text{
   color: #fff !important;

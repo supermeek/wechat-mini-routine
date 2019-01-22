@@ -1,3 +1,20 @@
+page,
+.page,
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    padding-top: 60px;
+    text-align: center;
+}
+
+
+
+
+
 view{
   box-sizing: border-box;
   background: #f8f8f8;
@@ -11,10 +28,10 @@ view{
   margin-left:25rpx;
   margin-bottom: 20px;
   background: #fff;
-  border-top-left-radius: 10px;
+  /* border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px; */
 }
 .item{
   position: relative;
@@ -90,8 +107,8 @@ view{
   line-height: 80rpx;
   background: #fff;
   border-bottom:1rpx solid #ddd;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  /* border-bottom-left-radius: 10px; */
+  /* border-bottom-right-radius: 10px; */
 
 }
 .learn_more>text{
@@ -101,6 +118,6 @@ view{
 }
 .page_title{
   background: #fff !important;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  /* border-top-left-radius: 10px; */
+  /* border-top-right-radius: 10px; */
 }

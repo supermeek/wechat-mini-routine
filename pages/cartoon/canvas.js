@@ -7,6 +7,7 @@ Page({
    */
   data: {
     title: "",
+    mid: null,
     cid: null,
     contents: [],
     nextPage: null,
@@ -26,12 +27,13 @@ Page({
     this.setData({
       title: options.title,
       cid: options.cid,
+      mid: options.mid,
       arr: []
     });
     wx.setNavigationBarTitle({
       title: this.data.title,
     })
-    this.loadContent(this.data.cid, null, 0);
+    this.loadContent(this.data.mid, this.data.cid, null, 0);
   },
 
   /**
@@ -60,20 +62,20 @@ Page({
     this.pulldown.loadMore()
     if (this.data.lasttPage == null) {
       if (this.data.lastCid == null) {
-        this.pulldown.loadMoreComplete("没有上一页")
+        this.pulldown.loadMoreComplete("已经到顶啦")
         setTimeout(() => {
           wx.stopPullDownRefresh();
         }, 500)
       } else {
         this.pulldown.loadMoreComplete("跳转至上一章...")
         setTimeout(() => {
-          this.loadContent(this.data.lastCid, null, 1);
+          this.loadContent(this.data.mid, this.data.lastCid, null, 1);
         }, 1000)
       }
     } else {
       this.pulldown.loadMoreComplete("跳转至上一页...")
       setTimeout(() => {
-        this.loadContent(this.data.cid, this.data.lasttPage, 1);
+        this.loadContent(this.data.mid, this.data.cid, this.data.lasttPage, 1);
       }, 1000)
     }
   },
@@ -85,15 +87,15 @@ Page({
     this.pullup.loadMore()
     if (this.data.nextPage == null) {
       if( this.data.nextCid == null ){
-        this.pullup.loadMoreComplete("没有下一页")
+        this.pullup.loadMoreComplete("已经到底啦")
       }else{
         setTimeout(() => {
-          this.loadContent(this.data.nextCid, null, 2);
+          this.loadContent(this.data.mid, this.data.nextCid, null, 2);
         }, 1000)
       }
     } else {
       setTimeout(() => {
-        this.loadContent(this.data.cid, this.data.nextPage, 2);
+        this.loadContent(this.data.mid, this.data.cid, this.data.nextPage, 2);
       }, 1000)
     }
   },
@@ -130,12 +132,18 @@ Page({
 
   /**
    * 加载内容
-   * parameter:{ cid：每一章的识别id， api：翻页的url }
-   * remark: type: 0=首次加载 / 1=加载上一页 / 2=加载下一页
+   * parameter:
+        cid：每一章的识别id， 
+        api：翻页的url
+   * remark: 
+        type:
+          0 = 首次加载
+          1 = 加载上一页
+          2 = 加载下一页
    */
-  loadContent: function (cid, api, type) {
+  loadContent: function (mid, cid, api, type) {
     var that = this;
-    app.service.getCartoonContent(cid, api)
+    app.service.getCartoonContent(mid, cid, api)
       .then(res => {
         console.log(res);
         wx.stopPullDownRefresh()

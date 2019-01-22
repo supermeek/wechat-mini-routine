@@ -1,4 +1,7 @@
 // pages/collect/index.js
+
+var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
+
 Page({
 
   /**
@@ -18,16 +21,7 @@ Page({
         speed: "更新至248话"
       },
       {
-        id: -1,
-        txtStyle: "",
-        title: "海贼王",
-        icon: "/images/201.jpg",
-        txt: "阅读至第12话",
-        status:"已完结",
-        speed: "更新至12话"
-      },
-      {
-        id: 1,
+        id: 0,
         txtStyle: "",
         title: "火影忍者啊",
         icon: "http://img.1whour.com/xpic/hacklink.jpg",
@@ -36,16 +30,7 @@ Page({
         speed: "更新至248话"
       },
       {
-        id: 2,
-        txtStyle: "",
-        title: "海贼王",
-        icon: "/images/201.jpg",
-        txt: "阅读至第12话",
-        status: "已完结",
-        speed: "更新至12话"
-      },
-      {
-        id: 3,
+        id: 0,
         txtStyle: "",
         title: "火影忍者啊",
         icon: "http://img.1whour.com/xpic/hacklink.jpg",
@@ -54,13 +39,58 @@ Page({
         speed: "更新至248话"
       },
       {
-        id: 4,
+        id: 0,
         txtStyle: "",
-        title: "海贼王",
-        icon: "/images/201.jpg",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
         txt: "阅读至第12话",
-        status: "已完结",
-        speed: "更新至12话"
+        status: "连载中",
+        speed: "更新至248话"
+      },
+      {
+        id: 0,
+        txtStyle: "",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
+        txt: "阅读至第12话",
+        status: "连载中",
+        speed: "更新至248话"
+      },
+      {
+        id: 0,
+        txtStyle: "",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
+        txt: "阅读至第12话",
+        status: "连载中",
+        speed: "更新至248话"
+      },
+      {
+        id: 0,
+        txtStyle: "",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
+        txt: "阅读至第12话",
+        status: "连载中",
+        speed: "更新至248话"
+      },
+      {
+        id: 0,
+        txtStyle: "",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
+        txt: "阅读至第12话",
+        status: "连载中",
+        speed: "更新至248话"
+      },
+      {
+        id: 0,
+        txtStyle: "",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
+        txt: "阅读至第12话",
+        status: "连载中",
+        speed: "更新至248话"
       }
     ]
   },
@@ -71,6 +101,25 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     this.initEleWidth();
+
+    
+    // var that = this;
+    // wx.getSystemInfo({
+    //   success: function (res) {
+    //     that.setData({
+    //       sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+    //       sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+    //     });
+    //   }
+    // });
+
+  },
+
+  tabClick: function (e) {
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
+    });
   },
 
 

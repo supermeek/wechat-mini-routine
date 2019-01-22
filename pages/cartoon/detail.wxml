@@ -26,7 +26,7 @@
       <text>目录</text>
     </view>
     <view class='chapter_list'>
-      <navigator wx:for="{{chapters}}" wx:for-item="item" wx:key="index" url="/pages/cartoon/canvas?title={{item.title}}&cid={{item.cid}}" class='cartoonTarget'>
+      <navigator wx:for="{{chapters}}" wx:for-item="item" wx:key="index" url="/pages/cartoon/canvas?title={{item.title}}&cid={{item.cid}}&mid={{item.mid}}" class='cartoonTarget'>
         <image src='/images/hui.png' class='chapter_icon'></image>
         <text class='chapter_count'>第{{index + 1}}话</text>
         <text class='chapter_name'>{{item.title}}</text>
