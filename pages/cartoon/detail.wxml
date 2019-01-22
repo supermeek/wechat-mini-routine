@@ -24,6 +24,7 @@
     <view class='page_title'>
       <image src='/images/tab.png' class='iconImg'></image>
       <text>目录</text>
+      <image src='/images/sort.png' class='sort__btn' bindtap='sort_list'></image>
     </view>
     <view class='chapter_list'>
       <navigator wx:for="{{chapters}}" wx:for-item="item" wx:key="index" url="/pages/cartoon/canvas?title={{item.title}}&cid={{item.cid}}&mid={{item.mid}}" class='cartoonTarget'>
@@ -36,7 +37,8 @@
   </view>
   <!-- 按钮 -->
   <view class='list_btns'>
-    <button style='color:#ff9800'>加入收藏</button>
+    <button style='color:#ff9800' bindtap='add_collect' wx:if="{{item.is_favourite}}">取消收藏</button>
+    <button style='color:#ff9800' bindtap='delete_collect' wx:if="{{!item.is_favourite}}">添加收藏</button>
     <button style='color:#228B22'>开始阅读</button>
   </view>
 

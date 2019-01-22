@@ -30,7 +30,7 @@ class service {
     wx.stopPullDownRefresh()
     wx.hideNavigationBarLoading()
     wx.showToast({
-      title: '加载失败！',
+      title: '出错了',
       icon: 'none'
     })
   }
@@ -38,7 +38,7 @@ class service {
 
   /**
    * function: 微信code登录
-   * request:
+   * parameter:
         js_code: 微信code
    * response:
         code:0, 
@@ -53,9 +53,10 @@ class service {
 
   /**
    * function: 查询漫画列表
+   * parameter:
+        api:翻页
    * request: 
         name:全部/搜索名称查询，
-        api:翻页
    * response: 
         code:0,
         count:20,
@@ -70,7 +71,7 @@ class service {
 
   /**
    * function: 查询某篇漫画详情
-   * request: 
+   * parameter:
         mid：单本漫画识别id，
         api：章节翻页
    * response: 
@@ -87,17 +88,19 @@ class service {
 
   /**
    * function: 获取某篇漫画章节
-   * request: 
+   * parameter:
         mid：单本漫画识别id，
         api：章节翻页
+   * request: 
+        reverse: false/true 章节排序
    * response: 
         code:0,
         count:20,
         data:[{mid:"3216",cid:"65536",...},...],
         links:{next:'api?page=2',previous:null}
    */
-  getCartoonDetail(mid = 0, api = null) {
-    let data = {}
+  getCartoonDetail(mid = 0, api = null, reverse = false) {
+    let data = reverse ? { reverse: reverse} : {}
     let url = (api == null ? this._baseUrl + '/api/spider/books/' + mid + '/chapters/' : api)
     return this._request.getRequest(url, data).then(res => res.data)
   }
@@ -119,6 +122,27 @@ class service {
     let data = {}
     let url = (api == null ? this._baseUrl + '/api/spider/books/'+ mid +'/chapters/' + cid +'/pages/' : api)
     return this._request.getRequest(url, data).then(res => res.data)
+  }
+
+
+
+
+  /**
+   * function: 收藏某章节
+   * request:
+        mid: 单本漫画识别id，
+        source_type：'comic'漫画 / 'novel'小说
+   * response: 
+        code:0,
+        count:20,
+        data:[{cid:"65536",page_no:1,...},...],
+        links:{next:'api?page=2',previous:null},
+        chapter_link:{next_cid:"28574", previous_cid: null}
+   */
+  addCollect(mid = 0, source_type, api = null) {
+    let data = { mid: mid, source_type: "comic"}
+    let url = (api == null ? this._baseUrl + '/api/spider/favourites/' : api)
+    return this._request.postRequest(url, data).then(res => res.data)
   }
 
 }

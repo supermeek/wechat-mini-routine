@@ -91,8 +91,31 @@ Page({
         txt: "阅读至第12话",
         status: "连载中",
         speed: "更新至248话"
+      },
+      {
+        id: 0,
+        txtStyle: "",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
+        txt: "阅读至第12话",
+        status: "连载中",
+        speed: "更新至248话"
+      },
+      {
+        id: 0,
+        txtStyle: "",
+        title: "火影忍者啊",
+        icon: "http://img.1whour.com/xpic/hacklink.jpg",
+        txt: "阅读至第12话",
+        status: "连载中",
+        speed: "更新至248话"
       }
-    ]
+    ],
+
+    tabs: ["漫画", "书籍", "电影"],
+    activeIndex: 0,
+    sliderOffset: 0,
+    sliderLeft: 0
   },
 
   /**
@@ -103,15 +126,15 @@ Page({
     this.initEleWidth();
 
     
-    // var that = this;
-    // wx.getSystemInfo({
-    //   success: function (res) {
-    //     that.setData({
-    //       sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-    //       sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-    //     });
-    //   }
-    // });
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+        });
+      }
+    });
 
   },
 

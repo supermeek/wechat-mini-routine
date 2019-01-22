@@ -7,29 +7,10 @@ App({
   
   onLaunch: function () {
 
-    
-
-
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-
-
-    // 检查登录态是否过期
-    wx.checkSession({
-      success() {
-        // session_key 未过期，并且在本生命周期一直有效
-      },
-      fail() {
-        // session_key 已经失效，需要重新执行登录流程
-        wx.login() // 重新登录
-      }
-    })
-
-    
-
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
 
     // 获取用户信息
     wx.getSetting({

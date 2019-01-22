@@ -109,3 +109,13 @@ page{
   border-radius: 4px;
   margin: 0;
 }
+
+.sort__btn{
+  width: 25px;
+  height: 25px;
+  margin-top: 6rpx;
+  position: absolute;
+  /* top: 10rpx; */
+  right: 20rpx;
+  vertical-align: bottom;
+}

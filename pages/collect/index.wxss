@@ -6,26 +6,36 @@ page,
 .page__bd{
     padding-bottom: 0;
 }
-.weui-tab__content{
-    padding-top: 60px;
-    text-align: center;
+.weui-navbar{
+  background: #fff;
 }
-
+.weui-navbar__item,.weui-navbar__title{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0;
+}
+.weui-tab__panel{
+  padding-top: 85rpx;
+}
+.weui-tab__content{
+    /* padding-top: 60px; */
+    /* text-align: center; */
+}
 
 
 
 
 view{
   box-sizing: border-box;
-  background: #f8f8f8;
+  /* background: #f8f8f8; */
 }
 .item-box{
   width: 750rpx;
 }
 .items{
   /* width: 100%; */
-  width: 700rpx;
-  margin-left:25rpx;
+  width: 750rpx;
+  /* margin-left:25rpx; */
   margin-bottom: 20px;
   background: #fff;
   /* border-top-left-radius: 10px;
@@ -35,7 +45,7 @@ view{
 }
 .item{
   position: relative;
-  width:660rpx;
+  width:710rpx;
   margin-left:20rpx;
   border-bottom: 1rpx solid #ddd;
   height: 120rpx;

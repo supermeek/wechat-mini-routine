@@ -55,7 +55,7 @@ class request {
         header: header,
         method: method,
         success: (res => {
-          if (res.statusCode === 200) {
+          if (200 <= res.statusCode && res.statusCode <= 300 ) {
             //200: 服务端业务处理正常结束
             resolve(res)
           } else {

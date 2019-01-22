@@ -8,11 +8,11 @@
 .cartoonTarget{
   display: inline-block;
   vertical-align: top;
-  margin-left: 18rpx;
+  margin-left: 45rpx;
   text-align: center;
-  width: 226rpx;
-  height: 300rpx;
-  margin-bottom: 120rpx;
+  width: 194rpx;
+  height: 260rpx;
+  margin-bottom: 140rpx;
   color: #cfcfcf;
 }
 .cartoonItem{
@@ -21,10 +21,12 @@
 }
 .itemCover{
   width: 100%;
-  height: 300rpx;
+  height: 260rpx;
   border-radius: 6px;
 }
 .itemName,.itemChapter{
+  height: 35rpx;
+  line-height: 35rpx;
   display: block;
   font-size: 22rpx;
   overflow: hidden;
@@ -33,7 +35,7 @@
 }
 .itemName{
   color: #000;
-  font-size: 28rpx !important;
+  font-size: 25rpx !important;
 }
 .weui-cell__bd{
   height: 60rpx;

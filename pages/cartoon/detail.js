@@ -8,28 +8,38 @@ Page({
   data: {
     mid: null,
     item: null,
+    reverse: false,
+    is_favourite: false,
     nextPage: null,
     lasttPage: null,
     last_read :{
-      title: "adsa 2话",
+      title: "",
       chapter: 12,
       url: "",
     },
     chapters: [],
   },
 
+
+  /**
+   * 添加收藏/取消收藏
+   */
+  add_collect: function(){
+    this.addCollect(this.data.mid, "comic")
+  },
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.mid)
     var that = this;
     this.pullup = this.selectComponent("#pullup");
     this.setData({
       mid: options.mid
     });
     
-
     this.loadInfo( options.mid, null);
     this.loadDetail( options.mid, null );
   },
@@ -58,6 +68,15 @@ Page({
   },
 
 
+  // 章节排序
+  sort_list:function(){
+    this.setData({
+      reverse: !this.data.reverse
+    });
+    this.loadDetail(this.data.mid, null, this.data.reverse);
+  },
+
+
   /**
    * 加载详情信息
    */
@@ -69,7 +88,8 @@ Page({
         wx.stopPullDownRefresh()
         wx.hideNavigationBarLoading()
         that.setData({
-          item: res.data
+          item: res.data,
+          is_favourite: res.data.is_favourite
         })
         wx.setNavigationBarTitle({
           title: res.data.title,
@@ -81,9 +101,9 @@ Page({
   /**
    * 加载章节
    */
-  loadDetail: function ( mid, api ) {
+  loadDetail: function (mid, api, reverse) {
     var that = this;
-    app.service.getCartoonDetail( mid, api )
+    app.service.getCartoonDetail(mid, api, reverse)
       .then(res => {
         console.log(res);
         wx.stopPullDownRefresh()
@@ -106,7 +126,25 @@ Page({
       .catch(res => {
         that.pullup.loadMoreComplete("加载失败")
       })
-  }
+  },
+
+
+
+  /**
+   * 添加收藏
+   */
+  addCollect: function (mid, source_type) {
+    app.service.addCollect(mid, source_type)
+      .then(res => {
+        console.log(res);
+        if(res.code == 0){
+          wx.showToast({
+            title: '收藏成功',
+            icon: 'none'
+          })
+        }
+      })
+  },
 
 
 })
