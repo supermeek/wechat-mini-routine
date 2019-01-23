@@ -38,6 +38,7 @@ class service {
 
   /**
    * function: 微信code登录
+   * method: POST
    * parameter:
         js_code: 微信code
    * response:
@@ -53,6 +54,7 @@ class service {
 
   /**
    * function: 查询漫画列表
+   * method: GET
    * parameter:
         api:翻页
    * request: 
@@ -71,6 +73,7 @@ class service {
 
   /**
    * function: 查询某篇漫画详情
+   * method: GET
    * parameter:
         mid：单本漫画识别id，
         api：章节翻页
@@ -88,6 +91,7 @@ class service {
 
   /**
    * function: 获取某篇漫画章节
+   * method: GET
    * parameter:
         mid：单本漫画识别id，
         api：章节翻页
@@ -108,6 +112,7 @@ class service {
 
   /**
    * function: 获取某章节漫画内容
+   * method: GET
    * parameter:
         cid: 单个章节识别id，
         api：内容翻页
@@ -129,6 +134,7 @@ class service {
 
   /**
    * function: 收藏某漫画或小说
+   * method: POST
    * request:
         mid: 单本漫画识别id，
         source_type：'comic'漫画 / 'novel'小说
@@ -142,6 +148,7 @@ class service {
 
   /**
    * function: 删除收藏
+   * method: POST
    * request:
         mid: 单本漫画识别id，
         source_type：'comic'漫画 / 'novel'小说
@@ -151,6 +158,19 @@ class service {
     let url = (api == null ? this._baseUrl + '/api/spider/favourites/delete/' : api)
     return this._request.postRequest(url, data).then(res => res.data)
   }
+
+
+  /**
+   * function: 获取收藏列表
+   * method: GET
+   */
+  getCollectList(api = null) {
+    let data = {  }
+    let url = (api == null ? this._baseUrl + '/api/spider/favourites/' : api)
+    return this._request.getRequest(url, data).then(res => res.data)
+  }
+
+
 
 }
 

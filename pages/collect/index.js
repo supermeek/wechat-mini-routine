@@ -1,5 +1,5 @@
 // pages/collect/index.js
-
+const app = getApp();
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 
 Page({
@@ -125,7 +125,6 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     this.initEleWidth();
 
-    
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -136,7 +135,10 @@ Page({
       }
     });
 
+    this.getCollectList();
+
   },
+
 
   tabClick: function (e) {
     this.setData({
@@ -146,7 +148,9 @@ Page({
   },
 
 
-
+  /** 
+   * 左滑删除
+   */
   touchS: function (e) {
     if (e.touches.length == 1) {
       this.setData({
@@ -155,7 +159,6 @@ Page({
       });
     }
   },
-
 
   touchM: function (e) {
     if (e.touches.length == 1) {
@@ -183,10 +186,7 @@ Page({
         list: list
       });
     }
-
   },
-
-
 
   touchE: function (e) {
     console.log("***********")
@@ -211,7 +211,7 @@ Page({
   },
 
 
-  //获取元素自适应后的实际宽度
+  /**获取元素自适应后的实际宽度*/
 
   getEleWidth: function (w) {
     var real = 0;
@@ -226,9 +226,7 @@ Page({
       return false;
       // Do something when catch error
     }
-
   },
-
 
   initEleWidth: function () {
     var delBtnWidth = this.getEleWidth(this.data.delBtnWidth);
@@ -249,17 +247,18 @@ Page({
     this.setData({
       list: list
     });
-
   },
 
 
-  
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  /** 获取收藏列表 */
+  getCollectList: function(){
+    app.service.getCollectList()
+      .then(res => {
+        console.log(res)
+      })
   }
+
+
 
 
 
