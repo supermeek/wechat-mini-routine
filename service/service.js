@@ -148,7 +148,7 @@ class service {
    */
   removeCollect(mid = 0, source_type, api = null) {
     let data = { mid: mid, source_type: source_type }
-    let url = (api == null ? this._baseUrl + '/api/spiders/favourites/delete/' : api)
+    let url = (api == null ? this._baseUrl + '/api/spider/favourites/delete/' : api)
     return this._request.postRequest(url, data).then(res => res.data)
   }
 

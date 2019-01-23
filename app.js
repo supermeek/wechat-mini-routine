@@ -51,16 +51,15 @@ App({
     wx.login({
       success: res => {
         // console.log(res)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
         // 登录获取token
         this.service.wxlogin(res.code).then(res => {
           // console.log(res);
           this.service.setHeader(res.data)
-        }).catch(res => {
-          wx.showToast({
-            title: '出错了！',
-            icon: 'none'
-          })
+          setTimeout(() => {
+            wx.switchTab({
+              url: '/pages/index/index'
+            })
+          }, 500)
         })
       }
     });

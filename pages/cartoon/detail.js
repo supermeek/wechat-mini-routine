@@ -12,6 +12,7 @@ Page({
     is_favourite: false,
     nextPage: null,
     lasttPage: null,
+    chapter_index: 1,
     last_read :{
       title: "",
       chapter: 12,
@@ -66,7 +67,7 @@ Page({
       this.pullup.loadMoreComplete("已全部加载")
     } else {
       setTimeout(() => {
-        this.loadDetail(this.data.mid, this.data.nextPage);
+        this.loadDetail(this.data.mid, this.data.nextPage, this.data.reverse);
       }, 1000)
     }
   },
@@ -106,10 +107,16 @@ Page({
    * 加载章节
    */
   loadDetail: function (mid, api, reverse) {
+    console.log(reverse)
     var that = this;
     app.service.getCartoonDetail(mid, api, reverse)
       .then(res => {
         console.log(res);
+        if (reverse){
+          that.setData({ chapter_index: res.count })
+        }else{
+          that.setData({ chapter_index: 1 })
+        }
         wx.stopPullDownRefresh()
         wx.hideNavigationBarLoading()
         if (api == null) {
@@ -142,6 +149,7 @@ Page({
       .then(res => {
         console.log(res);
         if(res.code == 0){
+          this.setData({ is_favourite: true });
           wx.showToast({
             title: '收藏成功',
             icon: 'none'
@@ -159,6 +167,7 @@ Page({
       .then(res => {
         console.log(res);
         if (res.code == 0) {
+          this.setData({ is_favourite: false });
           wx.showToast({
             title: '已取消',
             icon: 'none'

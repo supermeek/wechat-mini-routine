@@ -15,7 +15,7 @@ Page({
     nextCid: null,
     lastCid: null,
     imageDefault: "/images/loading4.gif",
-    arr: [],
+    // arr: [],
   },
 
   /**
@@ -28,7 +28,6 @@ Page({
       title: options.title,
       cid: options.cid,
       mid: options.mid,
-      arr: []
     });
     wx.setNavigationBarTitle({
       title: this.data.title,
@@ -40,10 +39,10 @@ Page({
    * 页面渲染完成之后
    */
   onReady: function(){
-    this.data.arr[0] = true
-    this.setData({
-      arr: this.data.arr
-    })      
+    // this.data.arr[0] = true
+    // this.setData({
+    //   arr: this.data.arr
+    // })      
   },
 
 
@@ -70,6 +69,9 @@ Page({
         this.pulldown.loadMoreComplete("跳转至上一章...")
         setTimeout(() => {
           this.loadContent(this.data.mid, this.data.lastCid, null, 1);
+          wx.setNavigationBarTitle({
+            title: this.data.lastTitle
+          })
         }, 1000)
       }
     } else {
@@ -91,6 +93,9 @@ Page({
       }else{
         setTimeout(() => {
           this.loadContent(this.data.mid, this.data.nextCid, null, 2);
+          wx.setNavigationBarTitle({
+            title: this.data.nextTitle
+          })
         }, 1000)
       }
     } else {
@@ -101,18 +106,18 @@ Page({
   },
 
   // 图片加载完成事件
-  loadImg: function(e){
-    // console.log(e)
-    var index = e.currentTarget.dataset.id;
-    if (this.data.arr[index - 1] === false){
-      this.data.arr[index - 1] = true
-    } else if (this.data.arr[index + 1] === false ){
-      this.data.arr[index + 1] = true
-    }
-    this.setData({
-      arr: this.data.arr
-    })
-  },
+  // loadImg: function(e){
+  //   // console.log(e)
+  //   var index = e.currentTarget.dataset.id;
+  //   if (this.data.arr[index - 1] === false){
+  //     this.data.arr[index - 1] = true
+  //   } else if (this.data.arr[index + 1] === false ){
+  //     this.data.arr[index + 1] = true
+  //   }
+  //   this.setData({
+  //     arr: this.data.arr
+  //   })
+  // },
 
 
   //图片点击事件
@@ -148,35 +153,29 @@ Page({
         console.log(res);
         wx.stopPullDownRefresh()
         wx.hideNavigationBarLoading()
-        for (var i = 0; i < res.data.length; i++) {
-          if (type == 0 || type == 2){
-            that.data.arr.push(false)
-          }else{
-            that.data.arr.unshift(false)
-          }
-        }
-        
-
-        if (type == 0) {
+        // for (var i = 0; i < res.data.length; i++) {
+        //   if (type == 0 || type == 2){
+        //     that.data.arr.push(false)
+        //   }else{
+        //     that.data.arr.unshift(false)
+        //   }
+        // }
+        if (type == 0 || type == 1) {
           that.setData({
             contents: res.data
           })
         } else {
-          if ( type == 1 ){
-            that.setData({
-              contents: res.data.concat(that.data.contents)
-            })
-          } else if ( type == 2 ){
-            that.setData({
-              contents: that.data.contents.concat(res.data),
-            })
-          }
+          that.setData({
+            contents: that.data.contents.concat(res.data),
+          })
         }
         that.setData({
           nextPage: res.links.next,
           lastPage: res.links.previous,
-          nextCid: res.chapter_link.next_cid,
-          lastCid: res.chapter_link.previous_cid
+          lastCid: res.chapter_link.previous_cid.cid ? res.chapter_link.previous_cid.cid : null,
+          nextCid: res.chapter_link.next_cid.cid ? res.chapter_link.next_cid.cid : null,
+          lastTitle: res.chapter_link.previous_cid.title ? res.chapter_link.previous_cid.title : null,
+          nextTitle: res.chapter_link.next_cid.title ? res.chapter_link.next_cid.title : null
         })
 
       })
