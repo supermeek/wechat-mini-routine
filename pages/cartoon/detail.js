@@ -24,8 +24,12 @@ Page({
   /**
    * 添加收藏/取消收藏
    */
-  add_collect: function(){
-    this.addCollect(this.data.mid, "comic")
+  toggle_collect: function(){
+    if(this.data.is_favourite){
+      this.removeCollect(this.data.mid, "comic")
+    }else{
+      this.addCollect(this.data.mid, "comic")
+    }
   },
 
 
@@ -140,6 +144,23 @@ Page({
         if(res.code == 0){
           wx.showToast({
             title: '收藏成功',
+            icon: 'none'
+          })
+        }
+      })
+  },
+
+
+  /**
+   * 移除收藏
+   */
+  removeCollect: function (mid, source_type) {
+    app.service.removeCollect(mid, source_type)
+      .then(res => {
+        console.log(res);
+        if (res.code == 0) {
+          wx.showToast({
+            title: '已取消',
             icon: 'none'
           })
         }

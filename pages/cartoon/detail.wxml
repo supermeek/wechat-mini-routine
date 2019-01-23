@@ -37,8 +37,8 @@
   </view>
   <!-- 按钮 -->
   <view class='list_btns'>
-    <button style='color:#ff9800' bindtap='add_collect' wx:if="{{item.is_favourite}}">取消收藏</button>
-    <button style='color:#ff9800' bindtap='delete_collect' wx:if="{{!item.is_favourite}}">添加收藏</button>
+    <button style='color:#ff9800' bindtap='toggle_collect' wx:if="{{item.is_favourite}}">取消收藏</button>
+    <button style='color:#ff9800' bindtap='toggle_collect' wx:if="{{!item.is_favourite}}">添加收藏</button>
     <button style='color:#228B22'>开始阅读</button>
   </view>
 

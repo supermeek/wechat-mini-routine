@@ -128,20 +128,27 @@ class service {
 
 
   /**
-   * function: 收藏某章节
+   * function: 收藏某漫画或小说
    * request:
         mid: 单本漫画识别id，
         source_type：'comic'漫画 / 'novel'小说
-   * response: 
-        code:0,
-        count:20,
-        data:[{cid:"65536",page_no:1,...},...],
-        links:{next:'api?page=2',previous:null},
-        chapter_link:{next_cid:"28574", previous_cid: null}
    */
   addCollect(mid = 0, source_type, api = null) {
-    let data = { mid: mid, source_type: "comic"}
+    let data = { mid: mid, source_type: source_type}
     let url = (api == null ? this._baseUrl + '/api/spider/favourites/' : api)
+    return this._request.postRequest(url, data).then(res => res.data)
+  }
+
+
+  /**
+   * function: 删除收藏
+   * request:
+        mid: 单本漫画识别id，
+        source_type：'comic'漫画 / 'novel'小说
+   */
+  removeCollect(mid = 0, source_type, api = null) {
+    let data = { mid: mid, source_type: source_type }
+    let url = (api == null ? this._baseUrl + '/api/spiders/favourites/delete/' : api)
     return this._request.postRequest(url, data).then(res => res.data)
   }
 
