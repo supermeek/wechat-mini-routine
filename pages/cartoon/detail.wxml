@@ -6,7 +6,7 @@
     <view class='detail_cover'>
         <text class='detail_name'>{{item.title}}</text>
         <text class='detail_update' decode='true'>{{item.author}}[著]&nbsp;&nbsp;&nbsp;{{item.status_display}}&nbsp;&nbsp;&nbsp;更新至{{item.total_chapter}}章</text>
-        <text class='last_readed'>上次阅读至{{last_read.chapter}}章</text>
+        <text class='last_readed' wx:if="{{item.last_read_chapter_no}}">上次阅读至{{item.last_read_chapter_no}}章</text>
         <image class="detail_star" wx:if="{{is_favourite}}" src="/images/star-on.png"></image>
     </view>
   </view>
@@ -28,7 +28,7 @@
       <image src='/images/sort.png' class='sort__btn' bindtap='sort_list'></image>
     </view>
     <view class='chapter_list'>
-      <navigator wx:for="{{chapters}}" wx:for-item="item" wx:key="index" url="/pages/cartoon/canvas?title={{item.title}}&cid={{item.cid}}&mid={{item.mid}}" class='cartoonTarget'>
+      <navigator wx:for="{{chapters}}" wx:for-item="item" wx:key="index" url="/pages/cartoon/canvas?title={{item.title}}&mid={{item.mid}}&cid={{item.cid}}" class='cartoonTarget'>
         <image src='/images/hui.png' class='chapter_icon'></image>
         <text class='chapter_count' wx:if="{{chapter_index == 1}}">第{{chapter_index + index}}章</text>
         <text class='chapter_count' wx:if="{{chapter_index != 1}}">第{{chapter_index - index}}章</text>
@@ -40,7 +40,7 @@
   <!-- 按钮 -->
   <view class='list_btns'>
     <button style='color:#ff9800' bindtap='toggle_collect'>{{ is_favourite ? "取消收藏" : "添加收藏" }}</button>
-    <button style='color:#228B22;' class="read_btn">开始阅读</button>
+    <button style='color:#228B22' bindtap='continue_read' class="read_btn" data-url="/pages/cartoon/canvas?title={{item.last_read_chapter_title}}&mid={{item.mid}}&cid={{item.last_read_cid}}">开始阅读</button>
   </view>
 
   <!-- 上拉加载 -->

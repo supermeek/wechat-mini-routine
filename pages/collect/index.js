@@ -10,108 +10,8 @@ Page({
   data: {
     src:"/images/201.jpg",
     delBtnWidth: 180, //删除按钮宽度单位（rpx）
-    list: [
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      },
-      {
-        id: 0,
-        txtStyle: "",
-        title: "火影忍者啊",
-        icon: "http://img.1whour.com/xpic/hacklink.jpg",
-        txt: "阅读至第12话",
-        status: "连载中",
-        speed: "更新至248话"
-      }
-    ],
-
+    list: [],
+    moveStyle: [],
     tabs: ["漫画", "书籍", "电影"],
     activeIndex: 0,
     sliderOffset: 0,
@@ -134,12 +34,25 @@ Page({
         });
       }
     });
+  },
 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.getCollectList();
+  },
 
+  /**
+  * 页面相关事件处理函数--监听用户下拉动作
+  */
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading()
+    this.getCollectList();
   },
 
 
+  // tab切换
   tabClick: function (e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
@@ -177,14 +90,18 @@ Page({
           txtStyle = "left:-" + delBtnWidth + "px";
         }
       }
+      console.log(e.target);
+
       //获取手指触摸的是哪一项
+      var type = e.target.dataset.type;
       var index = e.target.dataset.index;
       var list = this.data.list;
-      list[index].txtStyle = txtStyle;
+      list[type][index].txtStyle = txtStyle;
       //更新列表的状态
       this.setData({
         list: list
       });
+
     }
   },
 
@@ -200,13 +117,16 @@ Page({
       //如果距离小于删除按钮的1/2，不显示删除按钮
       var txtStyle = disX > delBtnWidth / 2 ? "left:-" + delBtnWidth + "px" : "left:0px";
       //获取手指触摸的是哪一项
+      console.log(e.target);
       var index = e.target.dataset.index;
+      var type = e.target.dataset.type;
       var list = this.data.list;
-      list[index].txtStyle = txtStyle;
+      list[type][index].txtStyle = txtStyle;
       //更新列表的状态
       this.setData({
         list: list
       });
+
     }
   },
 
@@ -255,6 +175,11 @@ Page({
     app.service.getCollectList()
       .then(res => {
         console.log(res)
+        this.setData({
+          list: res.data
+        });
+        wx.stopPullDownRefresh()
+        wx.hideNavigationBarLoading()
       })
   }
 

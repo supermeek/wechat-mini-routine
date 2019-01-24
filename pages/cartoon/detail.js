@@ -45,8 +45,14 @@ Page({
       mid: options.mid
     });
     
-    this.loadInfo( options.mid, null);
     this.loadDetail( options.mid, null );
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.loadInfo(this.data.mid, null);
   },
 
   /**
@@ -107,11 +113,10 @@ Page({
    * 加载章节
    */
   loadDetail: function (mid, api, reverse) {
-    console.log(reverse)
     var that = this;
     app.service.getCartoonDetail(mid, api, reverse)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if (reverse){
           that.setData({ chapter_index: res.count })
         }else{
@@ -147,7 +152,7 @@ Page({
   addCollect: function (mid, source_type) {
     app.service.addCollect(mid, source_type)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if(res.code == 0){
           this.setData({ is_favourite: true });
           wx.showToast({
@@ -165,7 +170,7 @@ Page({
   removeCollect: function (mid, source_type) {
     app.service.removeCollect(mid, source_type)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if (res.code == 0) {
           this.setData({ is_favourite: false });
           wx.showToast({
@@ -175,6 +180,13 @@ Page({
         }
       })
   },
+
+  // 开始阅读
+  continue_read: function(e){
+    wx.navigateTo({
+      url: e.target.dataset.url
+    })
+  }
 
 
 })

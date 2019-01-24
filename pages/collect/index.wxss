@@ -33,15 +33,9 @@ view{
   width: 750rpx;
 }
 .items{
-  /* width: 100%; */
   width: 750rpx;
-  /* margin-left:25rpx; */
   margin-bottom: 20px;
   background: #fff;
-  /* border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px; */
 }
 .item{
   position: relative;
@@ -51,6 +45,13 @@ view{
   height: 120rpx;
   line-height: 120rpx;
   overflow: hidden;
+}
+.item_move_cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .inner{
   position: absolute;
@@ -96,7 +97,8 @@ view{
 }
 .inner.del{
   background-color: #e64340;
-  width: 180rpx;text-align: center;
+  width: 180rpx;
+  text-align: center;
   z-index: 4;
   right: 0;
   color: #fff
