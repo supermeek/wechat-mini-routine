@@ -30,9 +30,9 @@
                           class="inner txt">
                             <image class="item-icon" mode="aspectFill" src="{{item.cover}}"></image>
                             <text class="item__title">{{item.book_title}}</text>
-                            <text class="item__status">{{item.speed}}</text>
-                            <text class="item__speed">{{item.status}}</text>
-                            <text class="item__read">{{item.txt}}</text>
+                            <text class="item__speed">更新至{{item.total_chapter}}章</text>
+                            <text class="item__read" wx:if="{{item.chapter_no}}">上次阅读至{{item.chapter_no}}章</text>
+                            <image class="item__right" src="/images/right.png"></image>
                             <view data-index="{{index}}" data-type="comic" class="item_move_cover"></view>
                           </view>
                           <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>

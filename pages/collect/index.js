@@ -15,7 +15,7 @@ Page({
     tabs: ["漫画", "书籍", "电影"],
     activeIndex: 0,
     sliderOffset: 0,
-    sliderLeft: 0
+    sliderLeft: 0 
   },
 
   /**
