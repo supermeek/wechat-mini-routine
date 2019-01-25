@@ -1,5 +1,9 @@
 <!--pages/book/index.wxml-->
-<view class="container">
-  <image class="home-bg" src="/images/timg4.jpg"></image>
-  <rich-text nodes="{{html}}"></rich-text>
+<view>
+  <!-- <image class="home-bg" mode='widthFix' src="/images/timg4.jpg"></image> -->
+  <text class='text'>努力研发中</text>
+  <rich-text nodes="{{html}}" class='wait'></rich-text>
+  <image mode='widthFix' src="/images/girl3.png" class='girl'></image>
+  <image mode='widthFix' src="/images/fire3.gif" class='gif2'></image>
+  <image mode='widthFix' src="/images/fire.gif" class='gif'></image>
 </view>

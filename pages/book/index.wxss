@@ -1,11 +1,55 @@
 /* pages/book/index.wxss */
-page,.container{
+page{
   height: 100%;
   width: 100%;
-  background: #FA8072;
+  background: #fff;
 }
 .home-bg{
-  margin-top: 20%;
-  height: 70%;
-  width: 60%;
+  position: absolute;
+  top: 180rpx;
+  left: 80rpx;
+  width: 45%;
+}
+.text{
+  display: inline-block;
+  position: absolute;
+  top: 340rpx;
+  left: 460rpx;
+  width: 50rpx;
+  text-align: center;
+  color: #666;
+  font-size: 30rpx;
+  padding: 5rpx;
+  border: 1rpx solid #bbb;
+}
+.wait{
+  display: inline-block;
+  position: absolute;
+  top: 420rpx;
+  left: 580rpx;
+  width: 60rpx;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: 500;
+  color: #D53855;
+  font-size: 40rpx;
+  background: #ddd;
+}
+.girl{
+  position: absolute;
+  width: 400rpx;
+  left: 80rpx;
+  top: 240rpx;
+}
+.gif{
+  width: 750rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.gif2{
+  width: 750rpx;
+  position: absolute;
+  top: -20px;
+  left: 0;
 }

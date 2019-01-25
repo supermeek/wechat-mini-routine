@@ -1,13 +1,9 @@
-
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" plain="true"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<!--pages/book/index.wxml-->
+<view>
+  <!-- <image class="home-bg" mode='widthFix' src="/images/timg4.jpg"></image> -->
+  <text class='text'>努力研发中</text>
+  <rich-text nodes="{{html}}" class='wait'></rich-text>
+  <image mode='widthFix' src="/images/girl3.png" class='girl'></image>
+  <image mode='widthFix' src="/images/fire3.gif" class='gif2'></image>
+  <image mode='widthFix' src="/images/fire.gif" class='gif'></image>
 </view>

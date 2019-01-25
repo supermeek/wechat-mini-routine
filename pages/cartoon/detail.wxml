@@ -25,7 +25,7 @@
     <view class='page_title'>
       <image src='/images/tab.png' class='iconImg'></image>
       <text>目录</text>
-      <image src='/images/sort.png' class='sort__btn' bindtap='sort_list'></image>
+      <image src='{{reverse ? "/images/sort-on.png" : "/images/sort-off.png"}}' class='sort__btn' bindtap='sort_list'></image>
     </view>
     <view class='chapter_list'>
       <navigator wx:for="{{chapters}}" wx:for-item="item" wx:key="index" url="/pages/cartoon/canvas?title={{item.title}}&mid={{item.mid}}&cid={{item.cid}}" class='cartoonTarget'>
@@ -40,7 +40,7 @@
   <!-- 按钮 -->
   <view class='list_btns'>
     <button style='color:#ff9800' bindtap='toggle_collect'>{{ is_favourite ? "取消收藏" : "添加收藏" }}</button>
-    <button style='color:#228B22' bindtap='continue_read' class="read_btn" data-url="/pages/cartoon/canvas?title={{item.last_read_chapter_title}}&mid={{item.mid}}&cid={{item.last_read_cid}}">开始阅读</button>
+    <button style='color:#228B22' bindtap='continue_read' class="read_btn" data-url="/pages/cartoon/canvas?title={{item.last_read_chapter_title}}&mid={{item.mid}}&cid={{item.last_read_cid}}">{{item.last_read_chapter_no ? "继续阅读" : "开始阅读"}}</button>
   </view>
 
   <!-- 上拉加载 -->

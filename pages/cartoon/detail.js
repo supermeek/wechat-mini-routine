@@ -13,11 +13,6 @@ Page({
     nextPage: null,
     lasttPage: null,
     chapter_index: 1,
-    last_read :{
-      title: "",
-      chapter: 12,
-      url: "",
-    },
     chapters: [],
   },
 

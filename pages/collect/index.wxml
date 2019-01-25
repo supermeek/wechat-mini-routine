@@ -79,7 +79,7 @@
                 <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
                 
                 
-                选项三的内容
+                <!-- 选项三的内容 -->
                 
                 
                 </view>
