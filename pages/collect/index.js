@@ -8,10 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    src:"/images/201.jpg",
     delBtnWidth: 180, //删除按钮宽度单位（rpx）
     list: [],
-    moveStyle: [],
     tabs: ["漫画", "书籍", "电影"],
     activeIndex: 0,
     sliderOffset: 0,
@@ -22,9 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
     this.initEleWidth();
-
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -51,7 +47,6 @@ Page({
     this.getCollectList();
   },
 
-
   // tab切换
   tabClick: function (e) {
     this.setData({
@@ -60,10 +55,7 @@ Page({
     });
   },
 
-
-  /** 
-   * 左滑删除
-   */
+  /** 左滑删除 */
   touchS: function (e) {
     if (e.touches.length == 1) {
       this.setData({
@@ -90,8 +82,6 @@ Page({
           txtStyle = "left:-" + delBtnWidth + "px";
         }
       }
-      console.log(e.target);
-
       //获取手指触摸的是哪一项
       var type = e.target.dataset.type;
       var index = e.target.dataset.index;
@@ -101,13 +91,10 @@ Page({
       this.setData({
         list: list
       });
-
     }
   },
 
   touchE: function (e) {
-    console.log("***********")
-    console.log(e)
     if (e.changedTouches.length == 1) {
       //手指移动结束后水平位置
       var endX = e.changedTouches[0].clientX;
@@ -117,7 +104,7 @@ Page({
       //如果距离小于删除按钮的1/2，不显示删除按钮
       var txtStyle = disX > delBtnWidth / 2 ? "left:-" + delBtnWidth + "px" : "left:0px";
       //获取手指触摸的是哪一项
-      console.log(e.target);
+      // console.log(e.target);
       var index = e.target.dataset.index;
       var type = e.target.dataset.type;
       var list = this.data.list;
@@ -126,20 +113,17 @@ Page({
       this.setData({
         list: list
       });
-
     }
   },
 
 
   /**获取元素自适应后的实际宽度*/
-
   getEleWidth: function (w) {
     var real = 0;
     try {
       var res = wx.getSystemInfoSync().windowWidth;
       var scale = (750 / 2) / (w / 2)
       // 以宽度750px设计稿做宽度的自适应
-      // console.log(scale);
       real = Math.floor(res / scale);
       return real;
     } catch (e) {
@@ -156,18 +140,6 @@ Page({
   },
 
 
-  //点击删除按钮事件
-  delItem: function (e) {
-    //获取列表中要删除项的下标
-    var index = e.target.dataset.index;
-    var list = this.data.list;
-    //移除列表中下标为index的项
-    list.splice(index, 1);
-    //更新列表的状态
-    this.setData({
-      list: list
-    });
-  },
 
 
   /** 获取收藏列表 */
@@ -181,10 +153,57 @@ Page({
         wx.stopPullDownRefresh()
         wx.hideNavigationBarLoading()
       })
+  },
+
+  //点击删除按钮事件
+  delItem: function (e) {
+    var that = this;
+    wx.showModal({
+      title: '移除收藏',
+      content: '确定删除' + e.target.dataset.name+'吗？',
+      confirmText: "删除",
+      cancelText: "取消",
+      success: function (res) {
+        console.log(res);
+        if (res.confirm) {
+          that.removeCollect(e.target.dataset.mid, e.target.dataset.type, function(){
+            var index = e.target.dataset.index;
+            var list = that.data.list;
+            list[e.target.dataset.type].splice(index, 1);
+            that.setData({ list: list });
+          });
+        }
+      }
+    });    
+  },
+
+
+  /**
+   * 移除收藏
+   */
+  removeCollect: function (mid, source_type, callback) {
+    app.service.removeCollect(mid, source_type)
+      .then(res => {
+        console.log(res);
+        if (res.code == 0) {
+          this.setData({ is_favourite: false });
+          callback();
+          wx.showToast({
+            title: '已删除收藏',
+            icon: 'none'
+          })
+        }
+      })
+  },
+
+
+  // 开始阅读
+  continue_read: function (e) {
+    var detail_url = "/pages/cartoon/detail?mid=" + e.target.dataset.mid;
+    var url = "/pages/cartoon/canvas?title={{item.last_read_chapter_title}}&mid={{item.mid}}&cid={{item.last_read_cid}}"
+    wx.navigateTo({
+      url: detail_url
+    })
   }
-
-
-
-
 
 })
