@@ -4,6 +4,7 @@
  * author: 王星月
  * date: 2019-1-9
  */
+const app = getApp();
 import request from './request.js'
 class service {
   constructor() {
@@ -18,7 +19,9 @@ class service {
   }
 
   setHeader( key ){
+    console.log("=====")
     this._defaultHeader.Authorization = "Token " + key;
+    console.log(this._defaultHeader.Authorization)
   }
 
   /**
@@ -27,12 +30,27 @@ class service {
   errorHander(res) {
     // console.error("接口报错了")
     console.error(res)
-    wx.stopPullDownRefresh()
-    wx.hideNavigationBarLoading()
-    wx.showToast({
-      title: '出错了',
-      icon: 'none'
-    })
+    console.log(res)
+    var that = this;
+    if (res.statusCode == 403){
+      wx.showModal({
+        title: '提示',
+        content: '您的账号信息已过期，请退出重新进入',
+        success: function () {
+          if (res.confirm) {
+          } else if (res.cancel) {
+          } else {
+          }
+        },
+      })
+    }else{
+      wx.stopPullDownRefresh()
+      wx.hideNavigationBarLoading()
+      wx.showToast({
+        title: '出错了',
+        icon: 'none'
+      })
+    }
   }
 
 
