@@ -199,7 +199,7 @@ Page({
 
   // 开始阅读
   continue_read: function (e) {
-    var detail_url = "/pages/cartoon/detail?mid=" + e.target.dataset.mid;
+    var detail_url = e.target.dataset.url;
     var url = "/pages/cartoon/canvas?title={{item.last_read_chapter_title}}&mid={{item.mid}}&cid={{item.last_read_cid}}"
     wx.navigateTo({
       url: detail_url

@@ -30,7 +30,7 @@
                             <text class="item__speed">更新至{{item.total_chapter}}章</text>
                             <text class="item__read" wx:if="{{item.chapter_no}}">上次阅读至{{item.chapter_no}}章</text>
                             <image class="item__right" src="/images/right.png"></image>
-                            <view data-index="{{index}}" data-type="comic" data-mid="{{item.mid}}" class="item_move_cover" bindtap='continue_read'></view>
+                            <view class="item_move_cover" data-index="{{index}}" data-type="comic" data-mid="{{item.mid}}" data-url="/pages/cartoon/detail?mid={{item.mid}}" bindtap='continue_read'></view>
                           </view>
                           <view data-index="{{index}}" 
                                 data-type="comic" 
@@ -55,22 +55,25 @@
                         <text>收藏书籍</text>
                       </view> -->
                       <view wx:for="{{list.novel}}" wx:key="{{index}}" data-index="{{index}}" class="item">
-                          <view
-                          bind:touchstart="touchS"
-                          bindtouchmove="touchM"
-                          bindtouchend="touchE"
-                          data-index="{{index}}"
-                          data-type="novel"
-                          style="{{item.txtStyle}}"
-                          class="inner txt">
+                          <view bind:touchstart="touchS"
+                                bindtouchmove="touchM"
+                                bindtouchend="touchE"
+                                style="{{item.txtStyle}}"
+                                class="inner txt">
                             <image class="item-icon" mode="aspectFill" src="{{item.cover}}"></image>
                             <text class="item__title">{{item.book_title}}</text>
-                            <text class="item__status">{{item.speed}}</text>
-                            <text class="item__speed">{{item.status}}</text>
-                            <text class="item__read">{{item.txt}}</text>
-                            <view data-index="{{index}}" data-type="novel" data-cid="novel" class="item_move_cover"></view>
+                            <text class="item__speed">更新至{{item.total_chapter}}章</text>
+                            <text class="item__read" wx:if="{{item.chapter_no}}">上次阅读至{{item.chapter_no}}章</text>
+                            <image class="item__right" src="/images/right.png"></image>
+                            <view class="item_move_cover" data-index="{{index}}" data-type="novel" data-mid="{{item.mid}}" data-url="/pages/book/detail?mid={{item.mid}}" bindtap='continue_read'></view>
                           </view>
-                          <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
+                          <view data-index="{{index}}" 
+                                data-type="novel" 
+                                data-cid="{{item.cid}}" 
+                                data-mid="{{item.mid}}" 
+                                data-name="{{item.book_title}}" 
+                                bindtap="delItem" 
+                                class="inner del">删除</view>
                         </view>
                       <!-- <view class='learn_more'><text>查看更多>></text></view> -->
                     </view>
@@ -80,6 +83,14 @@
                 
                 
                 <!-- 选项三的内容 -->
+                <view>
+                  <!-- <image class="home-bg" mode='widthFix' src="/images/timg4.jpg"></image> -->
+                  <text class='text'>努力研发中</text>
+                  <text class='wait'>敬请期待 ...</text>
+                  <image mode='widthFix' src="/images/girl3.png" class='girl'></image>
+                  <image mode='widthFix' src="/images/fire3.gif" class='gif2'></image>
+                  <image mode='widthFix' src="/images/fire.gif" class='gif'></image>
+                </view>
                 
                 
                 </view>

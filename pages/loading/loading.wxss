@@ -1,8 +1,13 @@
 page,view{
   width: 100%;
   height: 100%;
+  background: #fff;
 }
 .loading{
-  width: 100%;
-  height: 99%;
+  width: 750rpx;
+  height: 800rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -400rpx;
+  left: 0;
 }

@@ -51,6 +51,7 @@ class service {
     return this._request.postRequest(url, data).then(res => res.data)
   }
   
+  /**  **************漫画****************** */
 
   /**
    * function: 查询漫画列表
@@ -129,9 +130,6 @@ class service {
     return this._request.getRequest(url, data).then(res => res.data)
   }
 
-
-
-
   /**
    * function: 收藏某漫画或小说
    * method: POST
@@ -171,6 +169,64 @@ class service {
   }
 
 
+  /**  **************小说****************** */
+
+  /**
+     * function: 查询小说列表
+     * method: GET
+     * parameter:
+          api:翻页
+     * request: 
+          name:全部/搜索名称查询，
+     */
+  getNovelList(name = null, api = null) {
+    let data = (name == null ? {} : { name: name })
+    let url = (api == null ? this._baseUrl + '/api/spider/novelbooks/' : api)
+    return this._request.getRequest(url, data).then(res => res.data)
+  }
+
+
+  /**
+   * function: 查询某篇小说详情
+   * method: GET
+   * parameter:
+        mid：单本小说识别id，
+        api：章节翻页
+   */
+  getNovelInfo(mid = 0, api = null) {
+    let data = {}
+    let url = (api == null ? this._baseUrl + '/api/spider/novelbooks/' + mid + '/' : api)
+    return this._request.getRequest(url, data).then(res => res.data)
+  }
+
+  /**
+   * function: 获取某小说章节
+   * method: GET
+   * parameter:
+        mid：单本小说识别id，
+        api：章节翻页
+   * request: 
+        reverse: false/true 章节排序
+   */
+  getNovelDetail(mid = 0, api = null, reverse = false) {
+    let data = reverse ? { reverse: reverse } : {}
+    let url = (api == null ? this._baseUrl + '/api/spider/novelbooks/' + mid + '/chapters/' : api)
+    return this._request.getRequest(url, data).then(res => res.data)
+  }
+
+
+  /**
+     * function: 获取某章节漫画内容
+     * method: GET
+     * parameter:
+          cid: 单个章节识别id，
+          api：内容翻页
+     */
+  getNovelContent(mid = 0, cid = 0, api = null) {
+    let data = {}
+    let url = (api == null ? this._baseUrl + '/api/spider/novelbooks/' + mid + '/chapters/' + cid + '/': api)
+    return this._request.getRequest(url, data).then(res => res.data)
+  }
 
 }
 

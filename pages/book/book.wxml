@@ -1,0 +1,11 @@
+<!--pages/cartoon/canvas.wxml-->
+<view>
+  <pulldown id="pulldown"/>
+  <view class='canvas_wrapper'>
+    <rich-text 
+        class='item'
+        nodes="{{contents.content}}"
+    ></rich-text>
+  </view>
+  <pullup id="pullup"/>
+</view>

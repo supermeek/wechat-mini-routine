@@ -54,7 +54,7 @@
         <view class='cartoonItem'>
           <image class="itemCover" src="{{item.cover}}" mode="aspectFill"></image>
           <text class='itemName'>{{item.title}}</text>
-          <text class='itemChapter'>更新至{{item.total_chapter}}话</text>
+          <text class='itemChapter'>更新至{{item.total_chapter}}章</text>
         </view>
       </navigator>
   </view>

@@ -1,0 +1,134 @@
+/* pages/cartoon/detail.wxss */
+page{
+  padding-bottom: 46px;
+}
+.detail_top{
+  width: 100%;
+  height: 420rpx;
+  position: relative;
+}
+.detail_top>image{
+  width: 750rpx;
+  height: 420rpx;
+}
+.detail_cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.8));
+  background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.8));
+  background: -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.8));
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.8));
+}
+.detail_name,.detail_update,.last_readed{
+  display: block;
+  margin-left: 20rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+.detail_star{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+}
+.detail_name{
+  font-size: 32rpx;
+  margin-top: 260rpx;
+}
+.detail_update{
+  font-size: 24rpx;
+  margin-top: 30rpx;
+  color: #ddd;
+}
+.last_readed{
+  color: #FFA500;
+  font-size: 24rpx;
+  margin-top: 15rpx;
+}
+.detail_description{
+  padding: 20rpx;
+}
+.detail_description>text{
+  color: #999;
+  font-size: 26rpx;
+}
+.chapter_list{
+  padding: 20rpx;
+}
+.chapter_list>navigator{
+  display: block;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #666;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.chapter_icon{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10px;
+  vertical-align: top;
+  margin-top: 20rpx;
+}
+.chapter_count{
+  color:#333;
+  display: inline-block;
+  margin-right:20rpx;
+  vertical-align: top;
+}
+.chapter_name{
+  display:inline-block;
+  width: 310rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.chapter_date{
+  color:#999;
+  font-size:24rpx;
+  position: absolute;
+  right:20rpx;
+}
+
+.list_btns{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  /* height: 40px; */
+  /* background: red; */
+}
+.list_btns>button,.list_btns>navigator{
+  display: inline-block;
+  width: 375rpx;
+  height: 45px;
+  line-height: 45px;
+  vertical-align: top;
+  background: #f2f2f2;
+  color: #ff9800;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 4px;
+  margin: 0;
+  box-sizing: border-box;
+  /* border: 1rpx solid #ddd; */
+}
+.read_btn{
+  margin-left: 2rpx;
+  /* border: 1rpx solid #228B22 !important; */
+}
+
+.sort__btn{
+  width: 25px;
+  height: 25px;
+  margin-top: 6rpx;
+  position: absolute;
+  /* top: 10rpx; */
+  right: 20rpx;
+  vertical-align: bottom;
+}

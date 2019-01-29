@@ -7,6 +7,8 @@
     "pages/cartoon/canvas",
     "pages/movie/index",
     "pages/book/index",
+    "pages/book/detail",
+    "pages/book/book",
     "pages/collect/index",
     "pages/logs/logs"
   ],

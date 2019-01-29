@@ -14,8 +14,6 @@ Page({
     lasttPage: null,
     nextCid: null,
     lastCid: null,
-    imageDefault: "/images/loading4.gif",
-    // arr: [],
   },
 
   /**
@@ -33,24 +31,6 @@ Page({
       title: this.data.title,
     })
     this.loadContent(this.data.mid, this.data.cid, null, 0);
-  },
-
-  /**
-   * 页面渲染完成之后
-   */
-  onReady: function(){
-    // this.data.arr[0] = true
-    // this.setData({
-    //   arr: this.data.arr
-    // })      
-  },
-
-
-  /**
-   * 监控页面滚动
-   */
-  onPageScroll: function(e){
-    
   },
 
 

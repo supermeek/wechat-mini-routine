@@ -1,55 +1,49 @@
-/* pages/book/index.wxss */
-page{
-  height: 100%;
+/* pages/cartoon/index.wxss */
+.fixedTop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.cartoonTarget{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 45rpx;
+  text-align: center;
+  width: 194rpx;
+  height: 260rpx;
+  margin-bottom: 140rpx;
+  color: #cfcfcf;
+}
+.cartoonItem{
   width: 100%;
-  background: #fff;
+  height: 100%;
 }
-.home-bg{
-  position: absolute;
-  top: 180rpx;
-  left: 80rpx;
-  width: 45%;
+.itemCover{
+  width: 100%;
+  height: 260rpx;
+  border-radius: 6px;
 }
-.text{
-  display: inline-block;
-  position: absolute;
-  top: 340rpx;
-  left: 460rpx;
-  width: 50rpx;
-  text-align: center;
+.itemName,.itemChapter{
+  height: 35rpx;
+  line-height: 35rpx;
+  display: block;
+  font-size: 22rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.itemName{
+  color: #000;
+  font-size: 25rpx !important;
+}
+.weui-cell__bd{
+  height: 60rpx;
+  line-height: 60rpx;
+  text-indent: 30rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.weui-cell__bd>view{
   color: #666;
-  font-size: 30rpx;
-  padding: 5rpx;
-  border: 1rpx solid #bbb;
-}
-.wait{
-  display: inline-block;
-  position: absolute;
-  top: 420rpx;
-  left: 580rpx;
-  width: 60rpx;
-  text-align: center;
-  letter-spacing: 2px;
-  font-weight: 500;
-  color: #D53855;
-  font-size: 40rpx;
-  background: #ddd;
-}
-.girl{
-  position: absolute;
-  width: 400rpx;
-  left: 80rpx;
-  top: 240rpx;
-}
-.gif{
-  width: 750rpx;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-.gif2{
-  width: 750rpx;
-  position: absolute;
-  top: -20px;
-  left: 0;
+  font-size:24rpx;
 }

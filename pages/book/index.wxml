@@ -1,9 +1,38 @@
-<!--pages/book/index.wxml-->
-<view>
-  <!-- <image class="home-bg" mode='widthFix' src="/images/timg4.jpg"></image> -->
-  <text class='text'>努力研发中</text>
-  <rich-text nodes="{{html}}" class='wait'></rich-text>
-  <image mode='widthFix' src="/images/girl3.png" class='girl'></image>
-  <image mode='widthFix' src="/images/fire3.gif" class='gif2'></image>
-  <image mode='widthFix' src="/images/fire.gif" class='gif'></image>
+<!--pages/cartoon/index.wxml-->
+<view style='padding-top:60px'>
+
+  <!-- 搜索框 -->
+  <view class="{{isFixedTop?'fixedTop':''}}" style='background:#f2f2f2;'>
+    <view class="weui-search-bar" style='background:#f2f2f2;border-bottom:none;position:absolute;top:0;width:100%;'>
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindblur="inputTyping" bindconfirm="inputTyping" bindfocus="showHistoryBlock"/>
+                <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">搜索书名</view>
+            </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view>
+      <navigator wx:for="{{list}}" wx:for-item="item" wx:key="index" url="/pages/book/detail?mid={{item.mid}}" class='cartoonTarget'>
+        <view class='cartoonItem'>
+          <image class="itemCover" src="{{item.cover}}" mode="aspectFill"></image>
+          <text class='itemName'>{{item.title}}</text>
+          <text class='itemChapter'>更新至{{item.total_chapter}}章</text>
+        </view>
+      </navigator>
+  </view>
+
+  <!-- 上拉加载 -->
+  <pullup id="pullup"/>
+
 </view>

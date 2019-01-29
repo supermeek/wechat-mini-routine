@@ -1,2 +1,2 @@
 <!--pages/loading/loading.wxml-->
-<image class="loading" code="aspectFill" src="/images/loading.gif"></image>
+<image class="loading" code="widthFix" src="/images/loading.gif"></image>

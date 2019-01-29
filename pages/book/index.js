@@ -1,66 +1,137 @@
-// pages/book/index.js
-Page({
+// pages/cartoon/index.js
+const app = getApp();
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-    html:"<p>敬请期待 ...</p>"
+    inputShowed: false,
+    showHistory: false,
+    inputVal: "",
+    isFixedTop: false,
+    list: [],
+    nextPage: null,
+    lasttPage: null,
   },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
+
   onLoad: function (options) {
-
+    this.pullup = this.selectComponent("#pullup");
+    this.loadList();
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 监听页面滚动
    */
-  onReady: function () {
-
+  onPageScroll: function (e) {
+    if (e.scrollTop > 100) {
+      this.setData({
+        isFixedTop: true
+      })
+    } else {
+      this.setData({
+        isFixedTop: false
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log('----下拉刷新列表----')
+    wx.showNavigationBarLoading()
+    this.loadList();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log("-----加载更多-----")
+    this.pullup.loadMore()
+    if (this.data.nextPage == null) {
+      this.pullup.loadMoreComplete("已全部加载")
+    } else {
+      setTimeout(() => {
+        this.loadList(null, this.data.nextPage);
+      }, 1000)
+    }
   },
 
   /**
-   * 用户点击右上角分享
+   * 加载列表
+   * parameter：name:搜索名称，api:下一页的api地址
    */
-  onShareAppMessage: function () {
+  loadList: function (name, api) {
+    var that = this
+    app.service.getNovelList(name, api)
+      .then(res => {
+        console.log(res);
+        wx.stopPullDownRefresh()
+        wx.hideNavigationBarLoading()
+        // for (var i = 0; i < res.data.length; i++) {
+        //   res.data[i].item_string = JSON.stringify(res.data[i]);
+        // }
+        if (api == null) {
+          that.setData({
+            list: res.data,
+            nextPage: res.links.next,
+            lastPage: res.links.previous
+          })
+        } else {
+          that.setData({
+            list: that.data.list.concat(res.data),
+            nextPage: res.links.next,
+            lastPage: res.links.previous
+          })
+        }
+        that.pullup.loadMoreComplete("加载成功")
+      })
+      .catch(res => {
+        that.pullup.loadMoreComplete("加载失败")
+      })
+  },
 
+  /**
+   * 搜索框
+   */
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.loadList()
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    // this.loadList()
+    this.setData({
+      inputVal: ""
+    });
+  },
+  // showHistoryBlock: function(){
+  //   this.setData({
+  //     showHistory: true
+  //   });
+  // },
+  inputTyping: function (e) {
+    this.loadList(e.detail.value, null)
+    console.log(e.detail)
+    this.setData({
+      inputVal: e.detail.value,
+      showHistory: false
+    });
   }
+
+
 })
+

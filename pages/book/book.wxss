@@ -1,0 +1,20 @@
+/* pages/cartoon/canvas.wxss */
+page,view{
+  width: 750rpx;
+  height: 50%;
+}
+.canvas_wrapper{
+  width: 710rpx !important;
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  padding-right: 20rpx;
+  padding-bottom: 20rpx;
+}
+.canvas_wrapper .item{
+  width: 710rpx !important;
+  font-size: 24rpx !important;
+  color: #666;
+}
+.item{
+  text-indent: 30rpx;
+}
