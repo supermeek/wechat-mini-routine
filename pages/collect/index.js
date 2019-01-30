@@ -10,7 +10,7 @@ Page({
   data: {
     delBtnWidth: 180, //删除按钮宽度单位（rpx）
     list: [],
-    tabs: ["漫画", "书籍", "电影"],
+    tabs: ["漫画", "书籍", "影视"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0 

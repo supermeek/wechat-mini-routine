@@ -1,10 +1,10 @@
 /* pages/cartoon/canvas.wxss */
 page,view{
   width: 750rpx;
-  height: 50%;
 }
 .canvas_wrapper{
   width: 710rpx !important;
+
   padding-left: 20rpx;
   padding-top: 20rpx;
   padding-right: 20rpx;

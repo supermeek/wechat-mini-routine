@@ -41,7 +41,7 @@
       },
       {
         "pagePath": "pages/movie/index",
-        "text": "电影",
+        "text": "影视",
         "iconPath": "images/movie-off.png",
         "selectedIconPath": "images/movie-on.png"
       },

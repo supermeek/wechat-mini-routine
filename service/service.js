@@ -15,13 +15,10 @@ class service {
     this._request = new request
     this._request.setErrorHandler(this.errorHander)
     this._request._header = this._defaultHeader
-    
   }
 
   setHeader( key ){
-    console.log("=====")
     this._defaultHeader.Authorization = "Token " + key;
-    console.log(this._defaultHeader.Authorization)
   }
 
   /**
