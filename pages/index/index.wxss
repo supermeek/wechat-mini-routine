@@ -1,7 +1,26 @@
 page,view{
-  font-size: 0;
   height: 100%;
   overflow: hidden;
+}
+.icon1{
+  width: 80rpx;
+  left: 60rpx;
+  position: absolute;
+  top: 260rpx;
+}
+.icon2{
+  width: 750rpx;
+  position: absolute;
+  top: 640rpx;
+}
+.bg-image{
+  width: 750rpx;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  /* background: red; */
 }
 .item1{
   position: absolute;

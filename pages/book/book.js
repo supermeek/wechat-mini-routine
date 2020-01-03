@@ -92,11 +92,11 @@ Page({
 
         if (type == 0 || type == 1) {
           that.setData({
-            contents: res.data
+            contents: [res.data.content]
           })
         } else {
           that.setData({
-            contents: that.data.contents.concat(res.data),
+            contents: that.data.contents.concat(res.data.content),
           })
         }
         that.setData({

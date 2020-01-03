@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/loading/loading",
     "pages/index/index",
     "pages/cartoon/index",
@@ -12,20 +12,20 @@
     "pages/collect/index",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"dark",
+  "window": {
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#f8f8f8",
     "navigationBarTitleText": "首页",
-    "navigationBarTextStyle":"black",
+    "navigationBarTextStyle": "black",
     "backgroundColor": "#f8f8f8"
   },
-  "tabBar":{
-    "list":[
+  "tabBar": {
+    "list": [
       {
-        "pagePath":"pages/index/index",
-        "text":"首页",
-        "iconPath":"images/home-off.png",
-        "selectedIconPath":"images/home-on.png"
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home-off.png",
+        "selectedIconPath": "images/home-on.png"
       },
       {
         "pagePath": "pages/cartoon/index",
@@ -41,7 +41,7 @@
       },
       {
         "pagePath": "pages/movie/index",
-        "text": "电影",
+        "text": "影视",
         "iconPath": "images/movie-off.png",
         "selectedIconPath": "images/movie-on.png"
       },
@@ -52,5 +52,6 @@
         "selectedIconPath": "images/collect-on.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

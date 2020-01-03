@@ -3,8 +3,11 @@
   <pulldown id="pulldown"/>
   <view class='canvas_wrapper'>
     <rich-text 
+        wx:for="{{contents}}" 
+        wx:for-item="item" 
+        wx:key="index" 
         class='item'
-        nodes="{{contents.content}}"
+        nodes="{{item}}"
     ></rich-text>
   </view>
   <pullup id="pullup"/>
